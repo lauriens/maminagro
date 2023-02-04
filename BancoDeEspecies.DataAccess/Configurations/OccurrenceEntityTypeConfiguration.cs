@@ -1,0 +1,58 @@
+﻿using BancoDeEspecies.Domain.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace BancoDeEspecies.DataAccess.Configurations
+{
+    public class OccurrenceEntityTypeConfiguration : IEntityTypeConfiguration<Occurrence>
+    {
+        public void Configure(EntityTypeBuilder<Occurrence> builder)
+        {
+            builder
+                .ToTable("Occurrences");
+
+            builder
+                .HasKey(p => p.Id);
+
+            builder
+                .Property(p => p.Id)
+                .IsRequired()
+                .ValueGeneratedOnAdd();
+
+            builder
+                .Property(p => p.StartDate);
+
+            builder
+                .Property(p => p.EndDate);
+
+            builder
+                .Property(p => p.IsDuplicate);
+
+            builder
+                .Property(p => p.OccurrenceType);
+
+            builder
+                .Property(p => p.IsSnucOccurrence);
+
+            builder
+                .HasOne(p => p.OccurenceMethod)
+                .WithMany(p => p.Occurences)
+                .HasForeignKey(p => p.OccurenceMethodId);
+
+            builder
+                .HasOne(p => p.Reference)
+                .WithMany(p => p.Occurences)
+                .HasForeignKey(p => p.ReferenceId);
+
+            builder
+                .HasOne(p => p.Species)
+                .WithMany(p => p.Occurences)
+                .HasForeignKey(p => p.SpeciesId);
+
+            builder
+                .HasOne(p => p.ThreatDegree)
+                .WithMany(p => p.Occurences)
+                .HasForeignKey(p => p.ThreatDegreeId);
+        }
+    }
+}

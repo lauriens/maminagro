@@ -1,0 +1,17 @@
+﻿using AutoMapper;
+using BancoDeEspecies.Application.Services.Base;
+using BancoDeEspecies.Application.ViewModels;
+using BancoDeEspecies.DataAccess.UnitOfWork;
+using BancoDeEspecies.Domain.Models;
+
+namespace BancoDeEspecies.Application.Services
+{
+    public interface IGenusService : IBaseService<Genus, GenusViewModel>
+    {
+    }
+
+    public class GenusService : BaseService<Genus, GenusViewModel>, IGenusService
+    {
+        public GenusService(IMapper mapper, IUnitOfWork unitOfWork) : base(mapper, unitOfWork) { }
+    }
+}

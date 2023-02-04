@@ -1,0 +1,25 @@
+﻿using AutoMapper;
+using BancoDeEspecies.Application.Services.Base;
+using BancoDeEspecies.Application.ViewModels;
+using BancoDeEspecies.DataAccess.UnitOfWork;
+using BancoDeEspecies.Domain.Models;
+
+namespace BancoDeEspecies.Application.Services
+{
+    public interface IOccurrenceService : IBaseService<Occurrence, OccurrenceViewModel>
+    {
+    }
+
+    public class OccurrenceService : BaseService<Occurrence, OccurrenceViewModel>, IOccurrenceService
+    {
+        public OccurrenceService(IMapper mapper, IUnitOfWork unitOfWork) : base(mapper, unitOfWork) { }
+
+        public new async Task<IEnumerable<OccurrenceViewModel>> GetAllAsync()
+        {
+            var repository = _unitOfWork.GetBaseRepository<Occurrence>();
+            var result = await repository.Get(includeProperties: "OccurenceMethod,Reference,Species,ThreatDegree,OccurrenceCultures,Locations");
+
+            return result.Select(_mapper.Map<OccurrenceViewModel>);
+        }
+    }
+}

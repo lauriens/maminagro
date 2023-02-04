@@ -1,0 +1,42 @@
+-> atualizar o context
+-> criar a nova initial migration
+-> criar um base service
+ - list all
+ - insert basicão
+ - get by id
+-> criar services p/
+ - reference
+ - occurence
+ - species
+
+
+
+mover agorecosystem pra paisagem
+
+anthroma e bioma são m pra n
++ ecorregião
+
+- name
+- area
+- link p/ arquivo shape
+
+habitat_type é uma descrição do habitat
+-> type_id fica na ocorrência porque pode mudar com o tempo
+ - is_snuc também
+
+area_type fica relacionada a ocorrência, p/ permitir mudança com o tempo
+
+abundâcia na ocorrência
+-> occurence type é opcional, e se não estiver preenchido, a ocorrência é dentro da paisagem, sem dados mais granulares
+
+---------------------------------
+
+-> adicionar referências nos gets
+-> inserts c/ só ids nas referências
+-> maybe verificar se a ref existe, e não inserir junto?
+-> alterar o tipo do Type em StudyCollectMethods
+-> limpar as view models p/ inserção
+
+
+
+-> revisar o db context das localities
