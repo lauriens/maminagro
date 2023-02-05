@@ -15,7 +15,7 @@
 
     public BiomeViewModel? Anthrome { get; set; }
     public BiomeViewModel? Biome { get; set; }
-    public CityViewModel? City { get; set; }
+    public MunicipalityViewModel? City { get; set; }
     public ICollection<LandscapeAreaTypeViewModel> LandscapeAreaTypes { get; set; }
     public ICollection<LandscapeStatisticViewModel> LandscapeStatistics { get; set; }
 

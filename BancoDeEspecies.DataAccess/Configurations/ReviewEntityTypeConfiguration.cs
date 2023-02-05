@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BancoDeEspecies.DataAccess.Configurations
 {
-    public class CityEntityTypeConfiguration : IEntityTypeConfiguration<City>
+    public class ReviewEntityTypeConfiguration : IEntityTypeConfiguration<Review>
     {
-        public void Configure(EntityTypeBuilder<City> builder)
+        public void Configure(EntityTypeBuilder<Review> builder)
         {
             builder
-                .ToTable("Cities");
+                .ToTable("Reviews");
 
             builder
                 .HasKey(p => p.Id);
@@ -20,14 +20,13 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .ValueGeneratedOnAdd();
 
             builder
-                .Property(p => p.Name)
-                .IsRequired()
-                .HasMaxLength(200);
+                .Property(p => p.Observation)
+                .HasMaxLength(1024);
 
             builder
-                .HasOne(p => p.Uf)
-                .WithMany(p => p.Cities)
-                .HasForeignKey(p => p.UfId);
+                .HasOne(p => p.User)
+                .WithMany(p => p.Reviews)
+                .HasForeignKey(p => p.UserId);
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace BancoDeEspecies.Domain.Models
+﻿namespace BancoDeEspecies.Domain.Models
 {
   public class Country
   {
@@ -10,5 +7,6 @@ namespace BancoDeEspecies.Domain.Models
     public string? ContinentName { get; set; }
 
     public ICollection<Uf> Ufs { get; set; }
+    public ICollection<User> Users { get; set; }
   }
 }

@@ -59,7 +59,11 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .WithMany(p => p.Landscapes);
 
             builder
-                .HasOne(p => p.City)
+                .HasMany(p => p.Localities)
+                .WithMany(p => p.Landscapes);
+
+            builder
+                .HasOne(p => p.Municipality)
                 .WithMany(p => p.Landscapes)
                 .HasForeignKey(p => p.CityId);
         }

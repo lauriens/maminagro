@@ -5,7 +5,7 @@ namespace BancoDeEspecies.Domain.Models
     public class Culture
   {
     public int Id { get; set; }
-    public string? Name { get; set; }
+    public string? ScientificName { get; set; }
     public string? CommonName { get; set; }
     public string? Variety { get; set; }
     public string? Phenology { get; set; }
@@ -14,9 +14,9 @@ namespace BancoDeEspecies.Domain.Models
     public TimeUnits TimeSinclePlantingUnit { get; set; }
     public Landscape? Landscape { get; set; }
     public CultureSpeciesType? SpeciesType { get; set; }
-    public int? SpeciesId { get; set; }
+    public int? SpecieId { get; set; }
 
-    public CultureSpecie? Species { get; set; }
+    public CultureSpecie? Specie { get; set; }
     public ICollection<OccurrenceCulture> OccurrenceCultures { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace BancoDeEspecies.Domain.Models
     public int? CountryId { get; set; }
 
     public Country? Country { get; set; }
-    public ICollection<City> Cities { get; set; }
+    public ICollection<Municipality> Municipalities { get; set; }
     public ICollection<ThreatDegree> ThreatDegrees { get; set; }
   }
 }

@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BancoDeEspecies.DataAccess.Configurations
 {
-    public class LocalityEntityTypeConfiguration : IEntityTypeConfiguration<Locality>
+    public class MunicipalityEntityTypeConfiguration : IEntityTypeConfiguration<Municipality>
     {
-        public void Configure(EntityTypeBuilder<Locality> builder)
+        public void Configure(EntityTypeBuilder<Municipality> builder)
         {
             builder
-                .ToTable("Localities");
+                .ToTable("Municipalities");
 
             builder
                 .HasKey(p => p.Id);
@@ -25,19 +25,9 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .HasMaxLength(200);
 
             builder
-                .Property(e => e.Latitude);
-
-            builder
-                .Property(e => e.Longitude);
-
-            builder
-                .HasOne(p => p.Type)
-                .WithMany(p => p.Localities)
-                .HasForeignKey(p => p.TypeId);
-
-            builder
-                .HasMany(p => p.Occurences)
-                .WithMany(p => p.Localities);
+                .HasOne(p => p.Uf)
+                .WithMany(p => p.Municipalities)
+                .HasForeignKey(p => p.UfId);
         }
     }
 }

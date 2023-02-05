@@ -7,12 +7,12 @@ namespace BancoDeEspecies.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CitiesController : Controller
+    public class MunicipalitiesController : Controller
     {
-        private readonly ILogger<CitiesController> _logger;
-        private readonly ICityService _CityService;
+        private readonly ILogger<MunicipalitiesController> _logger;
+        private readonly IMunicipalityService _CityService;
 
-        public CitiesController(ILogger<CitiesController> logger, ICityService CityService)
+        public MunicipalitiesController(ILogger<MunicipalitiesController> logger, IMunicipalityService CityService)
         {
             _logger = logger;
             _CityService = CityService;
@@ -43,7 +43,7 @@ namespace BancoDeEspecies.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync([FromBody] CityViewModel city)
+        public async Task<IActionResult> CreateAsync([FromBody] MunicipalityViewModel city)
         {
             _logger.LogInformation(Constants.InitiatingEndpointLog, "CreateAsync", "City");
 

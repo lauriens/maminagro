@@ -13,7 +13,7 @@ namespace BancoDeEspecies.DataAccess.Configurations
 
         public DbSet<AreaType> AreaTypes { get; set; }
         public DbSet<Biome> Biomes { get; set; }
-        public DbSet<City> Cities { get; set; }
+        public DbSet<Municipality> Municipalities { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<OccurrenceColetaMethod> ColetaMethods { get; set; }
         public DbSet<Country> Countries { get; set; }
@@ -26,7 +26,7 @@ namespace BancoDeEspecies.DataAccess.Configurations
         public DbSet<Landscape> Landscapes { get; set; }
         public DbSet<LandscapeAreaType> LandscapeAreaTypes { get; set; }
         public DbSet<LandscapeStatistic> LandscapeStatistics { get; set; }
-        public DbSet<Locality> Locations { get; set; }
+        public DbSet<Locality> Localities { get; set; }
         public DbSet<LocalityType> LocationTypes { get; set; }
         public DbSet<MaterialDestination> MaterialDestinations { get; set; }
         public DbSet<Occurrence> Occurences { get; set; }
@@ -46,7 +46,7 @@ namespace BancoDeEspecies.DataAccess.Configurations
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(CityEntityTypeConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(MunicipalityEntityTypeConfiguration).Assembly);
         }
 
     }

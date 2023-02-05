@@ -4,11 +4,11 @@ using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Mappings
 {
-    public class CityMap : Profile
+    public class MunicipalityMap : Profile
     {
-        public CityMap()
+        public MunicipalityMap()
         {
-            CreateMap<City, CityViewModel>().ReverseMap();
+            CreateMap<Municipality, MunicipalityViewModel>().ReverseMap();
         }
     }
 }

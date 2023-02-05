@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace BancoDeEspecies.Domain.Models
+﻿namespace BancoDeEspecies.Domain.Models
 {
-  public class City
+  public class Municipality
   {
     public int Id { get; set; }
     public string? Name { get; set; }

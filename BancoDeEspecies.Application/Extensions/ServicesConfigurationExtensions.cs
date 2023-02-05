@@ -36,7 +36,7 @@ namespace BancoDeEspecies.Application.Extensions
             services.AddScoped<IThreatDegreeService, ThreatDegreeService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUfService, UfService>();
-            services.AddScoped<ICityService, CityService>();
+            services.AddScoped<IMunicipalityService, MunicipalityService>();
             services.AddScoped<ILocalityService, LocalityService>();
 
             return services;

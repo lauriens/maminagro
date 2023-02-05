@@ -24,7 +24,7 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .HasMaxLength(256);
 
             builder
-                .Property(p => p.Name)
+                .Property(p => p.ScientificName)
                 .IsRequired()
                 .HasMaxLength(256);
 
@@ -48,9 +48,9 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .Property(e => e.Variety);
 
             builder
-                .HasOne(p => p.Species)
+                .HasOne(p => p.Specie)
                 .WithMany(p => p.Cultures)
-                .HasForeignKey(p => p.SpeciesId);
+                .HasForeignKey(p => p.SpecieId);
         }
     }
 }

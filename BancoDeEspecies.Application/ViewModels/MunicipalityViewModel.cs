@@ -1,6 +1,6 @@
 ﻿namespace BancoDeEspecies.Application.ViewModels
 {
-    public class CityViewModel
+    public class MunicipalityViewModel
     {
         public int? Id { get; set; }
         public string? Name { get; set; }

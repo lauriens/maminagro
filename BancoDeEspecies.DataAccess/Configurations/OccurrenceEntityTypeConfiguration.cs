@@ -26,6 +26,9 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .Property(p => p.EndDate);
 
             builder
+                .Property(p => p.OccurrenceTime);
+
+            builder
                 .Property(p => p.IsDuplicate);
 
             builder
@@ -35,7 +38,12 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .Property(p => p.IsSnucOccurrence);
 
             builder
-                .HasOne(p => p.OccurenceMethod)
+                .HasOne(p => p.User)
+                .WithMany()
+                .HasForeignKey(p => p.CreatedBy);
+
+            builder
+                .HasOne(p => p.OccurenceColetaMethod)
                 .WithMany(p => p.Occurences)
                 .HasForeignKey(p => p.OccurenceMethodId);
 

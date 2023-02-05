@@ -18,13 +18,14 @@ namespace BancoDeEspecies.Domain.Models
     public int? ReferenceId { get; set; }
     public int? SampleAreaTypeId { get; set; }
     public Anthrome? Anthrome { get; set; }
-    public City? City { get; set; }
+    public Municipality? Municipality { get; set; }
     public Reference? Reference { get; set; }
     public SampleAreaType SampleAreaType { get; set; }
+    public ICollection<Abundance> Abundances { get; set; }
     public ICollection<Biome>? Biomes { get; set; }
     public ICollection<LandscapeAreaType> LandscapeAreaTypes { get; set; }
     public ICollection<LandscapeStatistic> LandscapeStatistics { get; set; }
 
-    public ICollection<Locality> Locations { get; set; }
+    public ICollection<Locality> Localities { get; set; }
   }
 }
