@@ -38,6 +38,8 @@ namespace BancoDeEspecies.Application.Extensions
             services.AddScoped<IUfService, UfService>();
             services.AddScoped<IMunicipalityService, MunicipalityService>();
             services.AddScoped<ILocalityService, LocalityService>();
+            services.AddScoped<IAbundanceService, AbundanceService>();
+            services.AddScoped<IReviewService, ReviewService>();
 
             return services;
         }

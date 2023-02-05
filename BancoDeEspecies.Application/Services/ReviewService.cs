@@ -6,12 +6,12 @@ using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Services
 {
-    public interface IBiomeService : IBaseService<Biome, BiomeViewModel>
+    public interface IReviewService : IBaseService<Review, ReviewViewModel>
     {
     }
 
-    public class BiomeService : BaseService<Biome, BiomeViewModel>, IBiomeService
+    public class ReviewService : BaseService<Review, ReviewViewModel>, IReviewService
     {
-        public BiomeService(IMapper mapper, IUnitOfWork unitOfWork) : base(mapper, unitOfWork) { }
+        public ReviewService(IMapper mapper, IUnitOfWork unitOfWork) : base(mapper, unitOfWork) { }
     }
 }
