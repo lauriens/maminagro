@@ -1,4 +1,4 @@
-﻿namespace BancoDeEspecies.Application.ViewModels
+﻿namespace BancoDeEspecies.Application.ViewModels.LandscapeAreaType
 {
   public class LandscapeAreaTypeViewModel
   {

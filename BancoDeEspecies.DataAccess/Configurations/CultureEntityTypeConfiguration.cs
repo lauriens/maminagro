@@ -24,11 +24,6 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .HasMaxLength(256);
 
             builder
-                .Property(p => p.ScientificName)
-                .IsRequired()
-                .HasMaxLength(256);
-
-            builder
                 .Property(p => p.Phenology)
                 .HasMaxLength(1024);
 
@@ -42,7 +37,7 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .Property(e => e.TimeSincePlanting);
 
             builder
-                .Property(e => e.TimeSinclePlantingUnit);
+                .Property(e => e.TimeSincePlantingUnit);
 
             builder
                 .Property(e => e.Variety);
@@ -51,6 +46,11 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .HasOne(p => p.Specie)
                 .WithMany(p => p.Cultures)
                 .HasForeignKey(p => p.SpecieId);
+
+            builder
+                .HasOne(p => p.Landscape)
+                .WithMany(p => p.Cultures)
+                .HasForeignKey(p => p.LandscapeId);
         }
     }
 }

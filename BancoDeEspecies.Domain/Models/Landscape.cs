@@ -23,6 +23,7 @@ namespace BancoDeEspecies.Domain.Models
     public SampleAreaType SampleAreaType { get; set; }
     public ICollection<Abundance> Abundances { get; set; }
     public ICollection<Biome>? Biomes { get; set; }
+    public ICollection<Culture> Cultures { get; set; }
     public ICollection<LandscapeAreaType> LandscapeAreaTypes { get; set; }
     public ICollection<LandscapeStatistic> LandscapeStatistics { get; set; }
 
