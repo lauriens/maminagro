@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BancoDeEspecies.Application.ViewModels;
+using BancoDeEspecies.Application.ViewModels.Genus;
 using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Mappings
@@ -9,6 +9,8 @@ namespace BancoDeEspecies.Application.Mappings
         public GenusMap()
         {
             CreateMap<Genus, GenusViewModel>();
+            CreateMap<CreateGenusViewModel, Genus>();
+            CreateMap<EditGenusViewModel, Genus>();
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BancoDeEspecies.Application.ViewModels;
+using BancoDeEspecies.Application.ViewModels.Order;
 using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Mappings
@@ -8,7 +8,9 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public OrderMap()
         {
-            CreateMap<Order, OrderViewModel>().ReverseMap();
+            CreateMap<Order, OrderViewModel>();
+            CreateMap<CreateOrderViewModel, Order>();
+            CreateMap<EditOrderViewModel, Order>();
         }
     }
 }

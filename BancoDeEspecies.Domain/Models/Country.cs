@@ -8,5 +8,6 @@
 
     public ICollection<Uf> Ufs { get; set; }
     public ICollection<User> Users { get; set; }
+    public ICollection<ThreatDegree> ThreatDegrees { get; set; }
   }
 }

@@ -8,7 +8,7 @@
     public decimal? Longitude { get; set; }
     public int? TypeId { get; set; }
 
-    public LocalityType? Type { get; set; }
+    public SampleAreaType? LocalityType { get; set; }
 
     public ICollection<Landscape> Landscapes { get; set; }
     public ICollection<Occurrence> Occurences { get; set; }

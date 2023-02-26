@@ -4,15 +4,15 @@ using BancoDeEspecies.DataAccess.UnitOfWork;
 
 namespace BancoDeEspecies.Application.Services.Base
 {
-    public interface IBaseService<T, W>
+    public interface IBaseService<T, W, V>
     {
         Task<IEnumerable<W>> GetAllAsync();
         Task<W> GetByIdAsync(int id);
-        Task CreateAsync(W entity);
+        Task CreateAsync(V entity);
         Task DeleteAsync(int id);
     }
 
-    public class BaseService<T, W> : IBaseService<T, W> where T : class
+    public class BaseService<T, W, V> : IBaseService<T, W, V> where T : class
     {
         protected readonly IMapper _mapper;
         protected readonly IUnitOfWork _unitOfWork;
@@ -42,7 +42,7 @@ namespace BancoDeEspecies.Application.Services.Base
             return _mapper.Map<W>(result);
         }
 
-        public async Task CreateAsync(W entityViewModel)
+        public async Task CreateAsync(V entityViewModel)
         {
             var repository = _unitOfWork.GetBaseRepository<T>();
 

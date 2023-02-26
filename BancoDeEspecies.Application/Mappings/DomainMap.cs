@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BancoDeEspecies.Application.ViewModels;
+using BancoDeEspecies.Application.ViewModels.Domain;
 
 namespace BancoDeEspecies.Application.Mappings
 {
@@ -7,7 +7,8 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public DomainMap()
         {
-            CreateMap<Domain.Models.Domain, DomainViewModel>().ReverseMap();
+            CreateMap<Domain.Models.Domain, DomainViewModel>();
+            CreateMap<CreateDomainViewModel, Domain.Models.Domain>();
         }
     }
 }

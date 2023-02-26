@@ -1,4 +1,6 @@
-﻿namespace BancoDeEspecies.Application.ViewModels.CultureSpecie
+﻿using BancoDeEspecies.Application.ViewModels.Genus;
+
+namespace BancoDeEspecies.Application.ViewModels.CultureSpecie
 {
   public class CultureSpecieViewModel
   {

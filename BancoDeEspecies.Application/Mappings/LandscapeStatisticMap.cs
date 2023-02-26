@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BancoDeEspecies.Application.ViewModels;
+using BancoDeEspecies.Application.ViewModels.LandscapeStatistic;
 using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Mappings
@@ -8,7 +8,9 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public LandscapeStatisticMap()
         {
-            CreateMap<LandscapeStatistic, LandscapeStatisticViewModel>().ReverseMap();
+            CreateMap<LandscapeStatistic, LandscapeStatisticViewModel>();
+            CreateMap<CreateLandscapeStatisticViewModel, LandscapeStatistic>();
+            CreateMap<EditLandscapeStatisticViewModel, LandscapeStatistic>();
         }
     }
 }

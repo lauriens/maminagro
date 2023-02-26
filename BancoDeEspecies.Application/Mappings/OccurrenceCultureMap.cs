@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BancoDeEspecies.Application.ViewModels;
+using BancoDeEspecies.Application.ViewModels.OccurrenceCulture;
 using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Mappings
@@ -8,7 +8,8 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public OccurrenceCultureMap()
         {
-            CreateMap<OccurrenceCulture, OccurrenceCultureViewModel>().ReverseMap();
+            CreateMap<OccurrenceCulture, OccurrenceCultureViewModel>();
+            CreateMap<CreateOccurrenceCultureViewModel, OccurrenceCulture>();
         }
     }
 }

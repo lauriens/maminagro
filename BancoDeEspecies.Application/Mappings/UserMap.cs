@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BancoDeEspecies.Application.ViewModels;
+using BancoDeEspecies.Application.ViewModels.User;
 using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Mappings
@@ -8,7 +8,8 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public UserMap()
         {
-            CreateMap<User, UserViewModel>().ReverseMap();
+            CreateMap<User, UserViewModel>();
+            CreateMap<CreateUserViewModel, User>();
         }
     }
 }

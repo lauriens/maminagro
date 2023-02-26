@@ -12,7 +12,7 @@ namespace BancoDeEspecies.Domain.Models
     public decimal? Radius { get; set; }
     public string? Description { get; set; }
     public bool? IsProtectedArea { get; set; }
-    public Agroecosystems Agroecosystem { get; set; }
+    public Agroecosystem Agroecosystem { get; set; }
     public int? AnthromeId { get; set; }
     public int? CityId { get; set; }
     public int? ReferenceId { get; set; }

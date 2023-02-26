@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BancoDeEspecies.Application.ViewModels;
+using BancoDeEspecies.Application.ViewModels.Phylum;
 using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Mappings
@@ -8,7 +8,9 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public PhylumMap()
         {
-            CreateMap<Phylum, PhylumViewModel>().ReverseMap();
+            CreateMap<Phylum, PhylumViewModel>();
+            CreateMap<CreatePhylumViewModel, Phylum>();
+            CreateMap<EditPhylumViewModel, Phylum>();
         }
     }
 }

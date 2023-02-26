@@ -1,4 +1,6 @@
-﻿namespace BancoDeEspecies.Application.ViewModels.Family
+﻿using BancoDeEspecies.Application.ViewModels.Order;
+
+namespace BancoDeEspecies.Application.ViewModels.Family
 {
     public class FamilyViewModel
     {

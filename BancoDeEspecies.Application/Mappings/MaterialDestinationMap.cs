@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BancoDeEspecies.Application.ViewModels;
+using BancoDeEspecies.Application.ViewModels.MaterialDestination;
 using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Mappings
@@ -8,7 +8,8 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public MaterialDestinationMap()
         {
-            CreateMap<MaterialDestination, MaterialDestinationViewModel>().ReverseMap();
+            CreateMap<MaterialDestination, MaterialDestinationViewModel>();
+            CreateMap<CreateMaterialDestinationViewModel, MaterialDestination>();
         }
     }
 }

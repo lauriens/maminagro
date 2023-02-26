@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BancoDeEspecies.Application.ViewModels;
+using BancoDeEspecies.Application.ViewModels.Municipality;
 using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Mappings
@@ -8,7 +8,9 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public MunicipalityMap()
         {
-            CreateMap<Municipality, MunicipalityViewModel>().ReverseMap();
+            CreateMap<Municipality, MunicipalityViewModel>();
+            CreateMap<CreateMunicipalityViewModel, Municipality>();
+            CreateMap<EditMunicipalityViewModel, Municipality>();
         }
     }
 }

@@ -38,6 +38,10 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .Property(p => p.IsSnucOccurrence);
 
             builder
+                .Property(p => p.ReviewerObservation)
+                .HasMaxLength(2048);
+
+            builder
                 .HasOne(p => p.User)
                 .WithMany()
                 .HasForeignKey(p => p.CreatedBy);
@@ -53,7 +57,7 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .HasForeignKey(p => p.ReferenceId);
 
             builder
-                .HasOne(p => p.Species)
+                .HasOne(p => p.Specie)
                 .WithMany(p => p.Occurences)
                 .HasForeignKey(p => p.SpeciesId);
 
@@ -61,6 +65,11 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .HasOne(p => p.ThreatDegree)
                 .WithMany(p => p.Occurences)
                 .HasForeignKey(p => p.ThreatDegreeId);
+
+            builder
+                .HasOne(p => p.Locality)
+                .WithMany(p => p.Occurences)
+                .HasForeignKey(p => p.LocalityId);
         }
     }
 }

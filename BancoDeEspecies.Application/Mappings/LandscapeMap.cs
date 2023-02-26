@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BancoDeEspecies.Application.ViewModels;
+using BancoDeEspecies.Application.ViewModels.Landscape;
 using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Mappings
@@ -8,7 +8,9 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public LandscapeMap()
         {
-            CreateMap<Landscape, LandscapeViewModel>().ReverseMap();
+            CreateMap<Landscape, LandscapeViewModel>();
+            CreateMap<CreateLandscapeViewModel, Landscape>();
+            CreateMap<EditLandscapeViewModel, Landscape>();
         }
     }
 }

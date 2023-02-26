@@ -1,4 +1,6 @@
-﻿namespace BancoDeEspecies.Application.ViewModels.Class
+﻿using BancoDeEspecies.Application.ViewModels.Phylum;
+
+namespace BancoDeEspecies.Application.ViewModels.Class
 {
   public class ClassViewModel
   {

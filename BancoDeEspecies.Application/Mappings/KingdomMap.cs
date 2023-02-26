@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BancoDeEspecies.Application.ViewModels;
+using BancoDeEspecies.Application.ViewModels.Kingdom;
 using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Mappings
@@ -8,7 +8,9 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public KingdomMap()
         {
-            CreateMap<Kingdom, KingdomViewModel>().ReverseMap();
+            CreateMap<Kingdom, KingdomViewModel>();
+            CreateMap<CreateKingdomViewModel, Kingdom>();
+            CreateMap<EditKingdomViewModel, Kingdom>();
         }
     }
 }

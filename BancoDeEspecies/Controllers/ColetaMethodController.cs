@@ -1,7 +1,6 @@
 ﻿using BancoDeEspecies.Application.Services;
 using BancoDeEspecies.Application.Utilities;
-using BancoDeEspecies.Application.ViewModels;
-using Microsoft.AspNetCore.Http;
+using BancoDeEspecies.Application.ViewModels.OccurrenceColetaMethod;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BancoDeEspecies.WebApi.Controllers
@@ -44,11 +43,11 @@ namespace BancoDeEspecies.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync([FromBody] ColetaMethodViewModel ColetaMethod)
+        public async Task<IActionResult> CreateAsync([FromBody] CreateOccurrenceColetaMethodViewModel coletaMethod)
         {
             _logger.LogInformation(Constants.InitiatingEndpointLog, "CreateAsync", "ColetaMethod");
 
-            await _ColetaMethodService.CreateAsync(ColetaMethod);
+            await _ColetaMethodService.CreateAsync(coletaMethod);
 
             _logger.LogInformation(Constants.FinalizingEndpointLog, "CreateAsync", "ColetaMethod");
 
@@ -56,7 +55,7 @@ namespace BancoDeEspecies.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> DeleteAsync([FromRoute] int id)
         {
             _logger.LogInformation(Constants.InitiatingEndpointLog, "DeleteAsync", "ColetaMethod");
 

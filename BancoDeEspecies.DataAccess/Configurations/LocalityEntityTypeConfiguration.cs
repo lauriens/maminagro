@@ -31,13 +31,9 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .Property(e => e.Longitude);
 
             builder
-                .HasOne(p => p.Type)
+                .HasOne(p => p.LocalityType)
                 .WithMany(p => p.Localities)
                 .HasForeignKey(p => p.TypeId);
-
-            builder
-                .HasMany(p => p.Occurences)
-                .WithMany(p => p.Localities);
         }
     }
 }

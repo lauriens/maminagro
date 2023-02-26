@@ -36,9 +36,6 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .HasMaxLength(256);
 
             builder
-                .Property(p => p.Type);
-
-            builder
                 .HasOne(p => p.MaterialDestination)
                 .WithMany(p => p.StudyCollectMethods)
                 .HasForeignKey(p => p.MaterialDestinationId);

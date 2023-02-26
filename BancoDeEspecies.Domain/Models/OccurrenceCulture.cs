@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace BancoDeEspecies.Domain.Models
+﻿namespace BancoDeEspecies.Domain.Models
 {
   public class OccurrenceCulture
   {
@@ -14,7 +11,7 @@ namespace BancoDeEspecies.Domain.Models
     public decimal? Area { get; set; }
     public decimal? Productivity { get; set; }
 
-    public Culture Culture { get; set; } = null!;
-    public Occurrence Occurence { get; set; } = null!;
+    public Culture Culture { get; set; }
+    public Occurrence Occurence { get; set; }
   }
 }

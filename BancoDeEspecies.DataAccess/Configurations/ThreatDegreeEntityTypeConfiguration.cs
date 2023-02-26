@@ -23,14 +23,10 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .Property(p => p.Classification)
                 .HasMaxLength(256);
 
-            builder.Property(e => e.IucnDate)
+            builder.Property(e => e.ResolutionDate)
                 .HasColumnType("timestamp without time zone");
 
-            builder.Property(e => e.MmaDate)
-              .HasColumnType("timestamp without time zone");
-
-            builder.Property(e => e.UfResolutionDate)
-                .HasColumnType("timestamp without time zone");
+            builder.Property(e => e.Source);
 
             builder
                 .HasOne(p => p.Species)
@@ -41,6 +37,11 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .HasOne(p => p.Uf)
                 .WithMany(p => p.ThreatDegrees)
                 .HasForeignKey(p => p.UfId);
+
+            builder
+                .HasOne(p => p.Country)
+                .WithMany(p => p.ThreatDegrees)
+                .HasForeignKey(p => p.CountryId);
         }
     }
 }

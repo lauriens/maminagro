@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BancoDeEspecies.Application.ViewModels;
+using BancoDeEspecies.Application.ViewModels.StudyCollectMethod;
 using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Mappings
@@ -8,7 +8,9 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public StudyCollectMethodMap()
         {
-            CreateMap<StudyCollectMethod, StudyCollectMethodViewModel>().ReverseMap();
+            CreateMap<StudyCollectMethod, StudyCollectMethodViewModel>();
+            CreateMap<CreateStudyCollectMethodViewModel, StudyCollectMethod>();
+            CreateMap<EditStudyCollectMethodViewModel, StudyCollectMethod>();
         }
     }
 }

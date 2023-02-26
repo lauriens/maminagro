@@ -22,12 +22,11 @@ namespace BancoDeEspecies.Application.Extensions
             services.AddScoped<IKingdomService, KingdomService>();
             services.AddScoped<ILandscapeAreaTypeService, LandscapeAreaTypeService>();
             services.AddScoped<ILandscapeService, LandscapeService>();
-            services.AddScoped<ILocationTypeService, LocationTypeService>();
             services.AddScoped<IMaterialDestinationService, MaterialDestinationService>();
             services.AddScoped<IOccurrenceCultureService, OccurrenceCultureService>();
             services.AddScoped<IOccurrenceService, OccurrenceService>();
             services.AddScoped<IOrderService, OrderService>();
-            services.AddScoped<IPhylaService, PhylaService>();
+            services.AddScoped<IPhylumService, PhylumService>();
             services.AddScoped<IReferenceService, ReferenceService>();
             services.AddScoped<IReferenceTypeService, ReferenceTypeService>();
             services.AddScoped<ISampleAreaTypeService, SampleAreaTypeService>();
@@ -39,7 +38,6 @@ namespace BancoDeEspecies.Application.Extensions
             services.AddScoped<IMunicipalityService, MunicipalityService>();
             services.AddScoped<ILocalityService, LocalityService>();
             services.AddScoped<IAbundanceService, AbundanceService>();
-            services.AddScoped<IReviewService, ReviewService>();
 
             return services;
         }

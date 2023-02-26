@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BancoDeEspecies.Application.ViewModels;
+using BancoDeEspecies.Application.ViewModels.Uf;
 using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Mappings
@@ -8,7 +8,9 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public UfMap()
         {
-            CreateMap<Uf, UfViewModel>().ReverseMap();
+            CreateMap<Uf, UfViewModel>();
+            CreateMap<CreateUfViewModel, Uf>();
+            CreateMap<EditUfViewModel, Uf>();
         }
     }
 }

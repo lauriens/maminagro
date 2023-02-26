@@ -1,7 +1,6 @@
 ﻿using BancoDeEspecies.Application.Services;
 using BancoDeEspecies.Application.Utilities;
-using BancoDeEspecies.Application.ViewModels;
-using Microsoft.AspNetCore.Http;
+using BancoDeEspecies.Application.ViewModels.Class;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BancoDeEspecies.WebApi.Controllers
@@ -44,11 +43,11 @@ namespace BancoDeEspecies.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync([FromBody] ClassViewModel Class)
+        public async Task<IActionResult> CreateAsync([FromBody] CreateClassViewModel classModel)
         {
             _logger.LogInformation(Constants.InitiatingEndpointLog, "CreateAsync", "Class");
 
-            await _ClassService.CreateAsync(Class);
+            await _ClassService.CreateAsync(classModel);
 
             _logger.LogInformation(Constants.FinalizingEndpointLog, "CreateAsync", "Class");
 
@@ -56,7 +55,7 @@ namespace BancoDeEspecies.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> DeleteAsync([FromRoute] int id)
         {
             _logger.LogInformation(Constants.InitiatingEndpointLog, "DeleteAsync", "Class");
 

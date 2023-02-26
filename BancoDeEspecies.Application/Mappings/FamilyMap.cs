@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BancoDeEspecies.Application.ViewModels;
+using BancoDeEspecies.Application.ViewModels.Family;
 using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Mappings
@@ -8,7 +8,9 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public FamilyMap()
         {
-            CreateMap<Family, FamilyViewModel>().ReverseMap();
+            CreateMap<Family, FamilyViewModel>();
+            CreateMap<CreateFamilyViewModel, Family>();
+            CreateMap<EditFamilyViewModel, Family>();
         }
     }
 }

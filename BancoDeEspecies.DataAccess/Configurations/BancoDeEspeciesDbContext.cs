@@ -27,7 +27,6 @@ namespace BancoDeEspecies.DataAccess.Configurations
         public DbSet<LandscapeAreaType> LandscapeAreaTypes { get; set; }
         public DbSet<LandscapeStatistic> LandscapeStatistics { get; set; }
         public DbSet<Locality> Localities { get; set; }
-        public DbSet<LocalityType> LocationTypes { get; set; }
         public DbSet<MaterialDestination> MaterialDestinations { get; set; }
         public DbSet<Occurrence> Occurences { get; set; }
         public DbSet<OccurrenceCulture> OccurrenceCultures { get; set; }

@@ -1,6 +1,6 @@
 ﻿using BancoDeEspecies.Application.Services;
 using BancoDeEspecies.Application.Utilities;
-using BancoDeEspecies.Application.ViewModels;
+using BancoDeEspecies.Application.ViewModels.AreaType;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BancoDeEspecies.WebApi.Controllers
@@ -43,11 +43,11 @@ namespace BancoDeEspecies.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync([FromBody] AreaTypeViewModel AreaType)
+        public async Task<IActionResult> CreateAsync([FromBody] CreateAreaTypeViewModel areaType)
         {
             _logger.LogInformation(Constants.InitiatingEndpointLog, "CreateAsync", "AreaType");
 
-            await _AreaTypeService.CreateAsync(AreaType);
+            await _AreaTypeService.CreateAsync(areaType);
 
             _logger.LogInformation(Constants.FinalizingEndpointLog, "CreateAsync", "AreaType");
 
@@ -55,7 +55,7 @@ namespace BancoDeEspecies.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> DeleteAsync([FromRoute] int id)
         {
             _logger.LogInformation(Constants.InitiatingEndpointLog, "DeleteAsync", "AreaType");
 

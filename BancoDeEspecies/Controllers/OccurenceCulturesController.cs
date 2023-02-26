@@ -1,19 +1,18 @@
 ﻿using BancoDeEspecies.Application.Services;
 using BancoDeEspecies.Application.Utilities;
-using BancoDeEspecies.Application.ViewModels;
-using Microsoft.AspNetCore.Http;
+using BancoDeEspecies.Application.ViewModels.OccurrenceCulture;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BancoDeEspecies.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OccurrenceCulturesController : ControllerBase
+    public class OccurrenceCultureController : ControllerBase
     {
-        private readonly ILogger<OccurrenceCulturesController> _logger;
+        private readonly ILogger<OccurrenceCultureController> _logger;
         private readonly IOccurrenceCultureService _OccurrenceCultureService;
 
-        public OccurrenceCulturesController(ILogger<OccurrenceCulturesController> logger, IOccurrenceCultureService OccurrenceCultureService)
+        public OccurrenceCultureController(ILogger<OccurrenceCultureController> logger, IOccurrenceCultureService OccurrenceCultureService)
         {
             _logger = logger;
             _OccurrenceCultureService = OccurrenceCultureService;
@@ -44,11 +43,11 @@ namespace BancoDeEspecies.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync([FromBody] OccurrenceCultureViewModel OccurrenceCulture)
+        public async Task<IActionResult> CreateAsync([FromBody] CreateOccurrenceCultureViewModel occurrenceCulture)
         {
             _logger.LogInformation(Constants.InitiatingEndpointLog, "CreateAsync", "OccurrenceCulture");
 
-            await _OccurrenceCultureService.CreateAsync(OccurrenceCulture);
+            await _OccurrenceCultureService.CreateAsync(occurrenceCulture);
 
             _logger.LogInformation(Constants.FinalizingEndpointLog, "CreateAsync", "OccurrenceCulture");
 
@@ -56,7 +55,7 @@ namespace BancoDeEspecies.WebApi.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> DeleteAsync([FromRoute] int id)
         {
             _logger.LogInformation(Constants.InitiatingEndpointLog, "DeleteAsync", "OccurrenceCulture");
 

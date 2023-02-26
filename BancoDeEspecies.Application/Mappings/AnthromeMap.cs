@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BancoDeEspecies.Application.ViewModels;
+using BancoDeEspecies.Application.ViewModels.Anthrome;
 using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Mappings
@@ -8,7 +8,8 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public AnthromeMap()
         {
-            CreateMap<Anthrome, AnthromeViewModel>().ReverseMap();
+            CreateMap<Anthrome, AnthromeViewModel>();
+            CreateMap<CreateAnthromeViewModel, Anthrome>();
         }
     }
 }

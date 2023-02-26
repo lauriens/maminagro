@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BancoDeEspecies.Application.ViewModels;
+using BancoDeEspecies.Application.ViewModels.Reference;
 using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Mappings
@@ -8,7 +8,9 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public ReferenceMap()
         {
-            CreateMap<Reference, ReferenceViewModel>().ReverseMap();
+            CreateMap<Reference, ReferenceViewModel>();
+            CreateMap<CreateReferenceViewModel, Reference>();
+            CreateMap<EditReferenceViewModel, Reference>();
         }
     }
 }
