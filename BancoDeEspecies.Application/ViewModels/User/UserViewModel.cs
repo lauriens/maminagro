@@ -6,7 +6,6 @@ namespace BancoDeEspecies.Application.ViewModels.User
   {
     public int Id { get; set; }
     public string FullName { get; set; }
-    public string LoginName { get; set; }
     public DateTime? CreatedAt { get; }
     public CountryViewModel Country { get; set; }
   }

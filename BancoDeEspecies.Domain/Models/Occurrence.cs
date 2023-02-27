@@ -15,7 +15,7 @@ namespace BancoDeEspecies.Domain.Models
     public int CreatedBy { get; set; }
     public int? ThreatDegreeId { get; set; }
     public int? OccurenceMethodId { get; set; }
-    public int? SpeciesId { get; set; }
+    public int? SpecieId { get; set; }
     public int? ReferenceId { get; set; }
     public int? LocalityId { get; set; }
 

@@ -9,6 +9,8 @@ namespace BancoDeEspecies.Application.Extensions
         {
             services.AddAutoMapper(typeof(ServicesConfigurationExtensions));
 
+            services.AddScoped<IAbundanceService, AbundanceService>();
+            services.AddScoped<IAnthromeService, AnthromeService>();
             services.AddScoped<IAreaTypeService, AreaTypeService>();
             services.AddScoped<IBiomeService, BiomeService>();
             services.AddScoped<IClassService, ClassService>();
@@ -22,7 +24,10 @@ namespace BancoDeEspecies.Application.Extensions
             services.AddScoped<IKingdomService, KingdomService>();
             services.AddScoped<ILandscapeAreaTypeService, LandscapeAreaTypeService>();
             services.AddScoped<ILandscapeService, LandscapeService>();
+            services.AddScoped<ILandscapeStatisticService, LandscapeStatisticService>();
+            services.AddScoped<ILocalityService, LocalityService>();
             services.AddScoped<IMaterialDestinationService, MaterialDestinationService>();
+            services.AddScoped<IMunicipalityService, MunicipalityService>();
             services.AddScoped<IOccurrenceCultureService, OccurrenceCultureService>();
             services.AddScoped<IOccurrenceService, OccurrenceService>();
             services.AddScoped<IOrderService, OrderService>();
@@ -35,9 +40,6 @@ namespace BancoDeEspecies.Application.Extensions
             services.AddScoped<IThreatDegreeService, ThreatDegreeService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUfService, UfService>();
-            services.AddScoped<IMunicipalityService, MunicipalityService>();
-            services.AddScoped<ILocalityService, LocalityService>();
-            services.AddScoped<IAbundanceService, AbundanceService>();
 
             return services;
         }

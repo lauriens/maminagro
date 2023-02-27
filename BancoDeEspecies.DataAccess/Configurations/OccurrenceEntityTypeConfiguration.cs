@@ -59,7 +59,7 @@ namespace BancoDeEspecies.DataAccess.Configurations
             builder
                 .HasOne(p => p.Specie)
                 .WithMany(p => p.Occurences)
-                .HasForeignKey(p => p.SpeciesId);
+                .HasForeignKey(p => p.SpecieId);
 
             builder
                 .HasOne(p => p.ThreatDegree)

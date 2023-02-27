@@ -13,5 +13,12 @@ namespace BancoDeEspecies.Application.Services
     public class ThreatDegreeService : BaseService<ThreatDegree, ThreatDegreeViewModel, CreateThreatDegreeViewModel>, IThreatDegreeService
     {
         public ThreatDegreeService(IMapper mapper, IUnitOfWork unitOfWork) : base(mapper, unitOfWork) { }
+
+        public new async Task CreateAsync(CreateThreatDegreeViewModel viewModel)
+        {
+            viewModel.ResolutionDate = viewModel.ResolutionDate?.ToUniversalTime();
+
+            await base.CreateAsync(viewModel);
+        }
     }
 }

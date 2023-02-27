@@ -26,12 +26,14 @@ namespace BancoDeEspecies.DataAccess.Configurations
             builder
                 .HasOne(p => p.Occurrence)
                 .WithMany(p => p.Abundances)
-                .HasForeignKey(p => p.OccurrenceId);
+                .HasForeignKey(p => p.OccurrenceId)
+                .IsRequired(false);
 
             builder
                 .HasOne(p => p.Landscape)
                 .WithMany(p => p.Abundances)
-                .HasForeignKey(p => p.LandscapeId);
+                .HasForeignKey(p => p.LandscapeId)
+                .IsRequired(false);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public LandscapeAreaTypeMap()
         {
-            CreateMap<LandscapeAreaType, LandscapeAreaTypeViewModel>();
+            CreateMap<LandscapeAreaType, LandscapeAreaTypeViewModel>().ReverseMap();
         }
     }
 }

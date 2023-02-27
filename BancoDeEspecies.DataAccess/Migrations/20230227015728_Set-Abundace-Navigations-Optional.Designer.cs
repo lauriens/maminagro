@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BancoDeEspecies.DataAccess.Migrations
 {
     [DbContext(typeof(BancoDeEspeciesDbContext))]
-    [Migration("20230203234654_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20230227015728_Set-Abundace-Navigations-Optional")]
+    partial class SetAbundaceNavigationsOptional
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,34 @@ namespace BancoDeEspecies.DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("BancoDeEspecies.Domain.Models.Abundance", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AbundanceValue")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<int?>("LandscapeId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("OccurrenceId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LandscapeId");
+
+                    b.HasIndex("OccurrenceId");
+
+                    b.ToTable("Abundances", (string)null);
+                });
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.Anthrome", b =>
                 {
@@ -76,29 +104,6 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Biomes", (string)null);
-                });
-
-            modelBuilder.Entity("BancoDeEspecies.Domain.Models.City", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
-
-                    b.Property<int?>("UfId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UfId");
-
-                    b.ToTable("Cities", (string)null);
                 });
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.Class", b =>
@@ -161,11 +166,6 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     b.Property<int?>("LandscapeId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
-
                     b.Property<string>("Phenology")
                         .HasMaxLength(1024)
                         .HasColumnType("character varying(1024)");
@@ -173,7 +173,7 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     b.Property<decimal?>("PlantedArea")
                         .HasColumnType("numeric");
 
-                    b.Property<int?>("SpeciesId")
+                    b.Property<int?>("SpecieId")
                         .HasColumnType("integer");
 
                     b.Property<int?>("SpeciesType")
@@ -182,7 +182,7 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     b.Property<int?>("TimeSincePlanting")
                         .HasColumnType("integer");
 
-                    b.Property<int>("TimeSinclePlantingUnit")
+                    b.Property<int>("TimeSincePlantingUnit")
                         .HasColumnType("integer");
 
                     b.Property<string>("Variety")
@@ -192,7 +192,7 @@ namespace BancoDeEspecies.DataAccess.Migrations
 
                     b.HasIndex("LandscapeId");
 
-                    b.HasIndex("SpeciesId");
+                    b.HasIndex("SpecieId");
 
                     b.ToTable("Cultures", (string)null);
                 });
@@ -435,24 +435,6 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     b.ToTable("Localities", (string)null);
                 });
 
-            modelBuilder.Entity("BancoDeEspecies.Domain.Models.LocalityType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LocalityTypes", (string)null);
-                });
-
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.MaterialDestination", b =>
                 {
                     b.Property<int>("Id")
@@ -479,6 +461,29 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     b.ToTable("MaterialDestinations", (string)null);
                 });
 
+            modelBuilder.Entity("BancoDeEspecies.Domain.Models.Municipality", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<int?>("UfId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UfId");
+
+                    b.ToTable("Municipalities", (string)null);
+                });
+
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.Occurrence", b =>
                 {
                     b.Property<int>("Id")
@@ -486,6 +491,9 @@ namespace BancoDeEspecies.DataAccess.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("timestamp with time zone");
@@ -496,8 +504,15 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     b.Property<bool>("IsSnucOccurrence")
                         .HasColumnType("boolean");
 
+                    b.Property<int?>("LocalityId")
+                        .IsRequired()
+                        .HasColumnType("integer");
+
                     b.Property<int?>("OccurenceMethodId")
                         .HasColumnType("integer");
+
+                    b.Property<DateTime?>("OccurrenceTime")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("OccurrenceType")
                         .HasColumnType("integer");
@@ -505,7 +520,12 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     b.Property<int?>("ReferenceId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("SpeciesId")
+                    b.Property<string>("ReviewerObservation")
+                        .IsRequired()
+                        .HasMaxLength(2048)
+                        .HasColumnType("character varying(2048)");
+
+                    b.Property<int?>("SpecieId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime?>("StartDate")
@@ -516,11 +536,15 @@ namespace BancoDeEspecies.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("LocalityId");
+
                     b.HasIndex("OccurenceMethodId");
 
                     b.HasIndex("ReferenceId");
 
-                    b.HasIndex("SpeciesId");
+                    b.HasIndex("SpecieId");
 
                     b.HasIndex("ThreatDegreeId");
 
@@ -675,9 +699,6 @@ namespace BancoDeEspecies.DataAccess.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CreatedAt")
-                        .HasColumnType("text");
-
                     b.Property<string>("TypeName")
                         .IsRequired()
                         .HasMaxLength(256)
@@ -720,30 +741,14 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     b.Property<int?>("GenusId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("IucnThreatDegree")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("KingdomId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 
-                    b.Property<int?>("NationalThreatDegree")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("PhylumId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
 
                     b.HasIndex("GenusId");
-
-                    b.HasIndex("KingdomId");
-
-                    b.HasIndex("PhylumId");
 
                     b.ToTable("Species", (string)null);
                 });
@@ -757,10 +762,10 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime?>("CollectEndDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime?>("CollectStartDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int?>("MaterialDestinationId")
                         .HasColumnType("integer");
@@ -777,9 +782,6 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     b.Property<string>("SamplingEffortUnit")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
-
-                    b.Property<int?>("Type")
-                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -802,11 +804,14 @@ namespace BancoDeEspecies.DataAccess.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
-                    b.Property<DateTime?>("IucnDate")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<int?>("CountryId")
+                        .HasColumnType("integer");
 
-                    b.Property<DateTime?>("MmaDate")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<DateTime?>("ResolutionDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Source")
+                        .HasColumnType("integer");
 
                     b.Property<int?>("SpeciesId")
                         .HasColumnType("integer");
@@ -814,10 +819,9 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     b.Property<int?>("UfId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime?>("UfResolutionDate")
-                        .HasColumnType("timestamp without time zone");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
 
                     b.HasIndex("SpeciesId");
 
@@ -863,18 +867,23 @@ namespace BancoDeEspecies.DataAccess.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CountryCode")
+                    b.Property<int?>("CountryId")
+                        .IsRequired()
                         .HasColumnType("integer");
 
-                    b.Property<DateTime?>("CreatedAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("FullName")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("BiomeLandscape", b =>
@@ -897,38 +906,29 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     b.Property<int>("LandscapesId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("LocationsId")
+                    b.Property<int>("LocalitiesId")
                         .HasColumnType("integer");
 
-                    b.HasKey("LandscapesId", "LocationsId");
+                    b.HasKey("LandscapesId", "LocalitiesId");
 
-                    b.HasIndex("LocationsId");
+                    b.HasIndex("LocalitiesId");
 
                     b.ToTable("LandscapeLocality");
                 });
 
-            modelBuilder.Entity("LocalityOccurrence", b =>
+            modelBuilder.Entity("BancoDeEspecies.Domain.Models.Abundance", b =>
                 {
-                    b.Property<int>("LocalitiesId")
-                        .HasColumnType("integer");
+                    b.HasOne("BancoDeEspecies.Domain.Models.Landscape", "Landscape")
+                        .WithMany("Abundances")
+                        .HasForeignKey("LandscapeId");
 
-                    b.Property<int>("OccurencesId")
-                        .HasColumnType("integer");
+                    b.HasOne("BancoDeEspecies.Domain.Models.Occurrence", "Occurrence")
+                        .WithMany("Abundances")
+                        .HasForeignKey("OccurrenceId");
 
-                    b.HasKey("LocalitiesId", "OccurencesId");
+                    b.Navigation("Landscape");
 
-                    b.HasIndex("OccurencesId");
-
-                    b.ToTable("LocalityOccurrence");
-                });
-
-            modelBuilder.Entity("BancoDeEspecies.Domain.Models.City", b =>
-                {
-                    b.HasOne("BancoDeEspecies.Domain.Models.Uf", "Uf")
-                        .WithMany("Cities")
-                        .HasForeignKey("UfId");
-
-                    b.Navigation("Uf");
+                    b.Navigation("Occurrence");
                 });
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.Class", b =>
@@ -943,16 +943,16 @@ namespace BancoDeEspecies.DataAccess.Migrations
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.Culture", b =>
                 {
                     b.HasOne("BancoDeEspecies.Domain.Models.Landscape", "Landscape")
-                        .WithMany()
+                        .WithMany("Cultures")
                         .HasForeignKey("LandscapeId");
 
-                    b.HasOne("BancoDeEspecies.Domain.Models.CultureSpecie", "Species")
+                    b.HasOne("BancoDeEspecies.Domain.Models.CultureSpecie", "Specie")
                         .WithMany("Cultures")
-                        .HasForeignKey("SpeciesId");
+                        .HasForeignKey("SpecieId");
 
                     b.Navigation("Landscape");
 
-                    b.Navigation("Species");
+                    b.Navigation("Specie");
                 });
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.CultureSpecie", b =>
@@ -999,7 +999,7 @@ namespace BancoDeEspecies.DataAccess.Migrations
                         .WithMany("Landscapes")
                         .HasForeignKey("AnthromeId");
 
-                    b.HasOne("BancoDeEspecies.Domain.Models.City", "City")
+                    b.HasOne("BancoDeEspecies.Domain.Models.Municipality", "Municipality")
                         .WithMany("Landscapes")
                         .HasForeignKey("CityId");
 
@@ -1015,7 +1015,7 @@ namespace BancoDeEspecies.DataAccess.Migrations
 
                     b.Navigation("Anthrome");
 
-                    b.Navigation("City");
+                    b.Navigation("Municipality");
 
                     b.Navigation("Reference");
 
@@ -1052,16 +1052,37 @@ namespace BancoDeEspecies.DataAccess.Migrations
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.Locality", b =>
                 {
-                    b.HasOne("BancoDeEspecies.Domain.Models.LocalityType", "Type")
-                        .WithMany("Locations")
+                    b.HasOne("BancoDeEspecies.Domain.Models.SampleAreaType", "LocalityType")
+                        .WithMany("Localities")
                         .HasForeignKey("TypeId");
 
-                    b.Navigation("Type");
+                    b.Navigation("LocalityType");
+                });
+
+            modelBuilder.Entity("BancoDeEspecies.Domain.Models.Municipality", b =>
+                {
+                    b.HasOne("BancoDeEspecies.Domain.Models.Uf", "Uf")
+                        .WithMany("Municipalities")
+                        .HasForeignKey("UfId");
+
+                    b.Navigation("Uf");
                 });
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.Occurrence", b =>
                 {
-                    b.HasOne("BancoDeEspecies.Domain.Models.OccurrenceColetaMethod", "OccurenceMethod")
+                    b.HasOne("BancoDeEspecies.Domain.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BancoDeEspecies.Domain.Models.Locality", "Locality")
+                        .WithMany("Occurences")
+                        .HasForeignKey("LocalityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BancoDeEspecies.Domain.Models.OccurrenceColetaMethod", "OccurenceColetaMethod")
                         .WithMany("Occurences")
                         .HasForeignKey("OccurenceMethodId");
 
@@ -1069,21 +1090,25 @@ namespace BancoDeEspecies.DataAccess.Migrations
                         .WithMany("Occurences")
                         .HasForeignKey("ReferenceId");
 
-                    b.HasOne("BancoDeEspecies.Domain.Models.Specie", "Species")
+                    b.HasOne("BancoDeEspecies.Domain.Models.Specie", "Specie")
                         .WithMany("Occurences")
-                        .HasForeignKey("SpeciesId");
+                        .HasForeignKey("SpecieId");
 
                     b.HasOne("BancoDeEspecies.Domain.Models.ThreatDegree", "ThreatDegree")
                         .WithMany("Occurences")
                         .HasForeignKey("ThreatDegreeId");
 
-                    b.Navigation("OccurenceMethod");
+                    b.Navigation("Locality");
+
+                    b.Navigation("OccurenceColetaMethod");
 
                     b.Navigation("Reference");
 
-                    b.Navigation("Species");
+                    b.Navigation("Specie");
 
                     b.Navigation("ThreatDegree");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.OccurrenceCulture", b =>
@@ -1138,19 +1163,7 @@ namespace BancoDeEspecies.DataAccess.Migrations
                         .WithMany("Species")
                         .HasForeignKey("GenusId");
 
-                    b.HasOne("BancoDeEspecies.Domain.Models.Kingdom", "Kingdom")
-                        .WithMany()
-                        .HasForeignKey("KingdomId");
-
-                    b.HasOne("BancoDeEspecies.Domain.Models.Phylum", "Phylum")
-                        .WithMany()
-                        .HasForeignKey("PhylumId");
-
                     b.Navigation("Genus");
-
-                    b.Navigation("Kingdom");
-
-                    b.Navigation("Phylum");
                 });
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.StudyCollectMethod", b =>
@@ -1170,6 +1183,10 @@ namespace BancoDeEspecies.DataAccess.Migrations
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.ThreatDegree", b =>
                 {
+                    b.HasOne("BancoDeEspecies.Domain.Models.Country", "Country")
+                        .WithMany("ThreatDegrees")
+                        .HasForeignKey("CountryId");
+
                     b.HasOne("BancoDeEspecies.Domain.Models.Specie", "Species")
                         .WithMany("ThreatDegrees")
                         .HasForeignKey("SpeciesId");
@@ -1177,6 +1194,8 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     b.HasOne("BancoDeEspecies.Domain.Models.Uf", "Uf")
                         .WithMany("ThreatDegrees")
                         .HasForeignKey("UfId");
+
+                    b.Navigation("Country");
 
                     b.Navigation("Species");
 
@@ -1188,6 +1207,17 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     b.HasOne("BancoDeEspecies.Domain.Models.Country", "Country")
                         .WithMany("Ufs")
                         .HasForeignKey("CountryId");
+
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("BancoDeEspecies.Domain.Models.User", b =>
+                {
+                    b.HasOne("BancoDeEspecies.Domain.Models.Country", "Country")
+                        .WithMany("Users")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Country");
                 });
@@ -1217,22 +1247,7 @@ namespace BancoDeEspecies.DataAccess.Migrations
 
                     b.HasOne("BancoDeEspecies.Domain.Models.Locality", null)
                         .WithMany()
-                        .HasForeignKey("LocationsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("LocalityOccurrence", b =>
-                {
-                    b.HasOne("BancoDeEspecies.Domain.Models.Locality", null)
-                        .WithMany()
                         .HasForeignKey("LocalitiesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BancoDeEspecies.Domain.Models.Occurrence", null)
-                        .WithMany()
-                        .HasForeignKey("OccurencesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -1247,11 +1262,6 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     b.Navigation("LandscapeAreaTypes");
                 });
 
-            modelBuilder.Entity("BancoDeEspecies.Domain.Models.City", b =>
-                {
-                    b.Navigation("Landscapes");
-                });
-
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.Class", b =>
                 {
                     b.Navigation("Orders");
@@ -1259,7 +1269,11 @@ namespace BancoDeEspecies.DataAccess.Migrations
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.Country", b =>
                 {
+                    b.Navigation("ThreatDegrees");
+
                     b.Navigation("Ufs");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.Culture", b =>
@@ -1296,14 +1310,18 @@ namespace BancoDeEspecies.DataAccess.Migrations
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.Landscape", b =>
                 {
+                    b.Navigation("Abundances");
+
+                    b.Navigation("Cultures");
+
                     b.Navigation("LandscapeAreaTypes");
 
                     b.Navigation("LandscapeStatistics");
                 });
 
-            modelBuilder.Entity("BancoDeEspecies.Domain.Models.LocalityType", b =>
+            modelBuilder.Entity("BancoDeEspecies.Domain.Models.Locality", b =>
                 {
-                    b.Navigation("Locations");
+                    b.Navigation("Occurences");
                 });
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.MaterialDestination", b =>
@@ -1311,8 +1329,15 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     b.Navigation("StudyCollectMethods");
                 });
 
+            modelBuilder.Entity("BancoDeEspecies.Domain.Models.Municipality", b =>
+                {
+                    b.Navigation("Landscapes");
+                });
+
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.Occurrence", b =>
                 {
+                    b.Navigation("Abundances");
+
                     b.Navigation("OccurrenceCultures");
                 });
 
@@ -1348,6 +1373,8 @@ namespace BancoDeEspecies.DataAccess.Migrations
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.SampleAreaType", b =>
                 {
                     b.Navigation("Landscapes");
+
+                    b.Navigation("Localities");
                 });
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.Specie", b =>
@@ -1364,7 +1391,7 @@ namespace BancoDeEspecies.DataAccess.Migrations
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.Uf", b =>
                 {
-                    b.Navigation("Cities");
+                    b.Navigation("Municipalities");
 
                     b.Navigation("ThreatDegrees");
                 });

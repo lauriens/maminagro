@@ -24,7 +24,7 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .HasMaxLength(256);
 
             builder.Property(e => e.ResolutionDate)
-                .HasColumnType("timestamp without time zone");
+                .HasColumnType("timestamp with time zone");
 
             builder.Property(e => e.Source);
 

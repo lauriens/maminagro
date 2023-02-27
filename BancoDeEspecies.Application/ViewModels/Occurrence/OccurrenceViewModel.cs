@@ -5,6 +5,7 @@ using BancoDeEspecies.Application.ViewModels.OccurrenceCulture;
 using BancoDeEspecies.Application.ViewModels.Reference;
 using BancoDeEspecies.Application.ViewModels.Specie;
 using BancoDeEspecies.Application.ViewModels.ThreatDegree;
+using BancoDeEspecies.Application.ViewModels.User;
 using BancoDeEspecies.Domain.Enums;
 
 namespace BancoDeEspecies.Application.ViewModels.Occurrence
@@ -20,12 +21,13 @@ namespace BancoDeEspecies.Application.ViewModels.Occurrence
     public bool? IsDuplicate { get; set; }
     public string ReviewerObservation { get; set; }
 
-    public OccurrenceColetaMethodViewModel? OccurenceMethod { get; set; }
+    public OccurrenceColetaMethodViewModel? OccurenceColetaMethod { get; set; }
     public ReferenceViewModel Reference { get; set; }
     public SpecieViewModel? Specie { get; set; }
     public ThreatDegreeViewModel? ThreatDegree { get; set; }
+    public UserViewModel User { get; set; }
     public ICollection<AbundanceViewModel> Abundances { get; set; }
     public ICollection<OccurrenceCultureViewModel> OccurrenceCultures { get; set; }
-    public ICollection<LocalityViewModel> Localities { get; set; }
+    public LocalityViewModel Locality { get; set; }
   }
 }

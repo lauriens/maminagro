@@ -1,4 +1,5 @@
 ﻿using BancoDeEspecies.Application.ViewModels.MaterialDestination;
+using BancoDeEspecies.Application.ViewModels.Reference;
 using BancoDeEspecies.Domain.Enums;
 
 namespace BancoDeEspecies.Application.ViewModels.StudyCollectMethod
@@ -13,5 +14,6 @@ namespace BancoDeEspecies.Application.ViewModels.StudyCollectMethod
     public DateTime? CollectEndDate { get; set; }
 
     public MaterialDestinationViewModel? MaterialDestination { get; set; }
+    public ReferenceViewModel Reference { get; set; }
   }
 }

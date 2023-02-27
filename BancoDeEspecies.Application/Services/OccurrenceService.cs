@@ -17,7 +17,7 @@ namespace BancoDeEspecies.Application.Services
         public new async Task<IEnumerable<OccurrenceViewModel>> GetAllAsync()
         {
             var repository = _unitOfWork.GetBaseRepository<Occurrence>();
-            var result = await repository.Get(includeProperties: "OccurenceMethod,Reference,Species,ThreatDegree,OccurrenceCultures,Locations");
+            var result = await repository.Get(includeProperties: "OccurenceColetaMethod,Reference,Specie,ThreatDegree,OccurrenceCultures,Locality");
 
             return result.Select(_mapper.Map<OccurrenceViewModel>);
         }

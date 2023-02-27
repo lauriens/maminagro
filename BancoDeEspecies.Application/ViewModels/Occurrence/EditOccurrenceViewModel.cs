@@ -13,9 +13,11 @@ namespace BancoDeEspecies.Application.ViewModels.Occurrence
         public bool? IsDuplicate { get; set; }
         public string ReviewerObservation { get; set; }
 
-        public int? OccurenceMethodId { get; set; }
-        public int ReferenceId { get; set; }
-        public int? SpecieId { get; set; }
         public int? ThreatDegreeId { get; set; }
+        public int? OccurenceMethodId { get; set; }
+        public int? SpecieId { get; set; }
+        public int? ReferenceId { get; set; }
+        public int? LocalityId { get; set; }
+        public int CreatedBy { get; set; }
     }
 }

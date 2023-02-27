@@ -21,11 +21,11 @@ namespace BancoDeEspecies.DataAccess.Configurations
 
             builder
                 .Property(p => p.CollectStartDate)
-                .HasColumnType("timestamp without time zone");
+                .HasColumnType("timestamp with time zone");
 
             builder
                 .Property(p => p.CollectEndDate)
-                .HasColumnType("timestamp without time zone");
+                .HasColumnType("timestamp with time zone");
 
             builder.Property(e => e.SampleDrawing);
 

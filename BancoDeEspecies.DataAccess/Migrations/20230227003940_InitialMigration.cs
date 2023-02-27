@@ -92,19 +92,6 @@ namespace BancoDeEspecies.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "LocalityTypes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LocalityTypes", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "MaterialDestinations",
                 columns: table => new
                 {
@@ -125,8 +112,7 @@ namespace BancoDeEspecies.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    TypeName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
-                    CreatedAt = table.Column<string>(type: "text", nullable: true)
+                    TypeName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -145,21 +131,6 @@ namespace BancoDeEspecies.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SampleAreaTypes", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    FullName = table.Column<string>(type: "text", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    CountryCode = table.Column<int>(type: "integer", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -183,6 +154,27 @@ namespace BancoDeEspecies.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    FullName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    CountryId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Users_Countries_CountryId",
+                        column: x => x.CountryId,
+                        principalTable: "Countries",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Kingdoms",
                 columns: table => new
                 {
@@ -198,27 +190,6 @@ namespace BancoDeEspecies.DataAccess.Migrations
                         name: "FK_Kingdoms_Domains_DomainId",
                         column: x => x.DomainId,
                         principalTable: "Domains",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Localities",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    Latitude = table.Column<decimal>(type: "numeric", nullable: true),
-                    Longitude = table.Column<decimal>(type: "numeric", nullable: true),
-                    TypeId = table.Column<int>(type: "integer", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Localities", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Localities_LocalityTypes_TypeId",
-                        column: x => x.TypeId,
-                        principalTable: "LocalityTypes",
                         principalColumn: "Id");
                 });
 
@@ -245,7 +216,28 @@ namespace BancoDeEspecies.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cities",
+                name: "Localities",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    Latitude = table.Column<decimal>(type: "numeric", nullable: true),
+                    Longitude = table.Column<decimal>(type: "numeric", nullable: true),
+                    TypeId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Localities", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Localities_SampleAreaTypes_TypeId",
+                        column: x => x.TypeId,
+                        principalTable: "SampleAreaTypes",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Municipalities",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -255,9 +247,9 @@ namespace BancoDeEspecies.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cities", x => x.Id);
+                    table.PrimaryKey("PK_Municipalities", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cities_Ufs_UfId",
+                        name: "FK_Municipalities_Ufs_UfId",
                         column: x => x.UfId,
                         principalTable: "Ufs",
                         principalColumn: "Id");
@@ -291,7 +283,6 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     SampleDrawing = table.Column<int>(type: "integer", nullable: true),
                     SamplingEffort = table.Column<decimal>(type: "numeric", nullable: true),
                     SamplingEffortUnit = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    Type = table.Column<int>(type: "integer", nullable: true),
                     CollectStartDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     CollectEndDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     MaterialDestinationId = table.Column<int>(type: "integer", nullable: true),
@@ -338,9 +329,9 @@ namespace BancoDeEspecies.DataAccess.Migrations
                         principalTable: "Anthromes",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Landscapes_Cities_CityId",
+                        name: "FK_Landscapes_Municipalities_CityId",
                         column: x => x.CityId,
-                        principalTable: "Cities",
+                        principalTable: "Municipalities",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Landscapes_References_ReferenceId",
@@ -428,11 +419,11 @@ namespace BancoDeEspecies.DataAccess.Migrations
                 columns: table => new
                 {
                     LandscapesId = table.Column<int>(type: "integer", nullable: false),
-                    LocationsId = table.Column<int>(type: "integer", nullable: false)
+                    LocalitiesId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LandscapeLocality", x => new { x.LandscapesId, x.LocationsId });
+                    table.PrimaryKey("PK_LandscapeLocality", x => new { x.LandscapesId, x.LocalitiesId });
                     table.ForeignKey(
                         name: "FK_LandscapeLocality_Landscapes_LandscapesId",
                         column: x => x.LandscapesId,
@@ -440,8 +431,8 @@ namespace BancoDeEspecies.DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_LandscapeLocality_Localities_LocationsId",
-                        column: x => x.LocationsId,
+                        name: "FK_LandscapeLocality_Localities_LocalitiesId",
+                        column: x => x.LocalitiesId,
                         principalTable: "Localities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -551,11 +542,7 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    IucnThreatDegree = table.Column<int>(type: "integer", nullable: true),
-                    NationalThreatDegree = table.Column<int>(type: "integer", nullable: true),
-                    GenusId = table.Column<int>(type: "integer", nullable: true),
-                    KingdomId = table.Column<int>(type: "integer", nullable: true),
-                    PhylumId = table.Column<int>(type: "integer", nullable: true)
+                    GenusId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -565,16 +552,6 @@ namespace BancoDeEspecies.DataAccess.Migrations
                         column: x => x.GenusId,
                         principalTable: "Genera",
                         principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Species_Kingdoms_KingdomId",
-                        column: x => x.KingdomId,
-                        principalTable: "Kingdoms",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Species_Phyla_PhylumId",
-                        column: x => x.PhylumId,
-                        principalTable: "Phyla",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -583,23 +560,22 @@ namespace BancoDeEspecies.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
                     CommonName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Variety = table.Column<string>(type: "text", nullable: true),
                     Phenology = table.Column<string>(type: "character varying(1024)", maxLength: 1024, nullable: true),
                     PlantedArea = table.Column<decimal>(type: "numeric", nullable: true),
                     TimeSincePlanting = table.Column<int>(type: "integer", nullable: true),
-                    TimeSinclePlantingUnit = table.Column<int>(type: "integer", nullable: false),
+                    TimeSincePlantingUnit = table.Column<int>(type: "integer", nullable: false),
                     LandscapeId = table.Column<int>(type: "integer", nullable: true),
                     SpeciesType = table.Column<int>(type: "integer", nullable: true),
-                    SpeciesId = table.Column<int>(type: "integer", nullable: true)
+                    SpecieId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cultures", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cultures_CultureSpecies_SpeciesId",
-                        column: x => x.SpeciesId,
+                        name: "FK_Cultures_CultureSpecies_SpecieId",
+                        column: x => x.SpecieId,
                         principalTable: "CultureSpecies",
                         principalColumn: "Id");
                     table.ForeignKey(
@@ -616,15 +592,20 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Classification = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    MmaDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    IucnDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    UfResolutionDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    ResolutionDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    Source = table.Column<int>(type: "integer", nullable: false),
                     UfId = table.Column<int>(type: "integer", nullable: true),
+                    CountryId = table.Column<int>(type: "integer", nullable: true),
                     SpeciesId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ThreatDegrees", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ThreatDegrees_Countries_CountryId",
+                        column: x => x.CountryId,
+                        principalTable: "Countries",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_ThreatDegrees_Species_SpeciesId",
                         column: x => x.SpeciesId,
@@ -645,13 +626,17 @@ namespace BancoDeEspecies.DataAccess.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     EndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    OccurrenceTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     IsDuplicate = table.Column<bool>(type: "boolean", nullable: true),
                     OccurrenceType = table.Column<int>(type: "integer", nullable: false),
                     IsSnucOccurrence = table.Column<bool>(type: "boolean", nullable: false),
+                    ReviewerObservation = table.Column<string>(type: "character varying(2048)", maxLength: 2048, nullable: false),
+                    CreatedBy = table.Column<int>(type: "integer", nullable: false),
                     ThreatDegreeId = table.Column<int>(type: "integer", nullable: true),
                     OccurenceMethodId = table.Column<int>(type: "integer", nullable: true),
                     SpeciesId = table.Column<int>(type: "integer", nullable: true),
-                    ReferenceId = table.Column<int>(type: "integer", nullable: true)
+                    ReferenceId = table.Column<int>(type: "integer", nullable: true),
+                    LocalityId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -661,6 +646,12 @@ namespace BancoDeEspecies.DataAccess.Migrations
                         column: x => x.OccurenceMethodId,
                         principalTable: "ColetaMethods",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Occurrences_Localities_LocalityId",
+                        column: x => x.LocalityId,
+                        principalTable: "Localities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Occurrences_References_ReferenceId",
                         column: x => x.ReferenceId,
@@ -676,27 +667,36 @@ namespace BancoDeEspecies.DataAccess.Migrations
                         column: x => x.ThreatDegreeId,
                         principalTable: "ThreatDegrees",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Occurrences_Users_CreatedBy",
+                        column: x => x.CreatedBy,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "LocalityOccurrence",
+                name: "Abundances",
                 columns: table => new
                 {
-                    LocalitiesId = table.Column<int>(type: "integer", nullable: false),
-                    OccurencesId = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    AbundanceValue = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    LandscapeId = table.Column<int>(type: "integer", nullable: false),
+                    OccurrenceId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LocalityOccurrence", x => new { x.LocalitiesId, x.OccurencesId });
+                    table.PrimaryKey("PK_Abundances", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_LocalityOccurrence_Localities_LocalitiesId",
-                        column: x => x.LocalitiesId,
-                        principalTable: "Localities",
+                        name: "FK_Abundances_Landscapes_LandscapeId",
+                        column: x => x.LandscapeId,
+                        principalTable: "Landscapes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_LocalityOccurrence_Occurrences_OccurencesId",
-                        column: x => x.OccurencesId,
+                        name: "FK_Abundances_Occurrences_OccurrenceId",
+                        column: x => x.OccurrenceId,
                         principalTable: "Occurrences",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -733,14 +733,19 @@ namespace BancoDeEspecies.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Abundances_LandscapeId",
+                table: "Abundances",
+                column: "LandscapeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Abundances_OccurrenceId",
+                table: "Abundances",
+                column: "OccurrenceId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_BiomeLandscape_LandscapesId",
                 table: "BiomeLandscape",
                 column: "LandscapesId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Cities_UfId",
-                table: "Cities",
-                column: "UfId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Classes_PhylumId",
@@ -753,9 +758,9 @@ namespace BancoDeEspecies.DataAccess.Migrations
                 column: "LandscapeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cultures_SpeciesId",
+                name: "IX_Cultures_SpecieId",
                 table: "Cultures",
-                column: "SpeciesId");
+                column: "SpecieId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CultureSpecies_GenusId",
@@ -783,9 +788,9 @@ namespace BancoDeEspecies.DataAccess.Migrations
                 column: "LandscapeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LandscapeLocality_LocationsId",
+                name: "IX_LandscapeLocality_LocalitiesId",
                 table: "LandscapeLocality",
-                column: "LocationsId");
+                column: "LocalitiesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Landscapes_AnthromeId",
@@ -818,14 +823,24 @@ namespace BancoDeEspecies.DataAccess.Migrations
                 column: "TypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LocalityOccurrence_OccurencesId",
-                table: "LocalityOccurrence",
-                column: "OccurencesId");
+                name: "IX_Municipalities_UfId",
+                table: "Municipalities",
+                column: "UfId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OccurrenceCultures_OccurenceId",
                 table: "OccurrenceCultures",
                 column: "OccurenceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Occurrences_CreatedBy",
+                table: "Occurrences",
+                column: "CreatedBy");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Occurrences_LocalityId",
+                table: "Occurrences",
+                column: "LocalityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Occurrences_OccurenceMethodId",
@@ -868,16 +883,6 @@ namespace BancoDeEspecies.DataAccess.Migrations
                 column: "GenusId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Species_KingdomId",
-                table: "Species",
-                column: "KingdomId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Species_PhylumId",
-                table: "Species",
-                column: "PhylumId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_StudyCollectMethods_MaterialDestinationId",
                 table: "StudyCollectMethods",
                 column: "MaterialDestinationId");
@@ -886,6 +891,11 @@ namespace BancoDeEspecies.DataAccess.Migrations
                 name: "IX_StudyCollectMethods_ReferenceId",
                 table: "StudyCollectMethods",
                 column: "ReferenceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ThreatDegrees_CountryId",
+                table: "ThreatDegrees",
+                column: "CountryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ThreatDegrees_SpeciesId",
@@ -901,10 +911,18 @@ namespace BancoDeEspecies.DataAccess.Migrations
                 name: "IX_Ufs_CountryId",
                 table: "Ufs",
                 column: "CountryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_CountryId",
+                table: "Users",
+                column: "CountryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Abundances");
+
             migrationBuilder.DropTable(
                 name: "BiomeLandscape");
 
@@ -918,25 +936,16 @@ namespace BancoDeEspecies.DataAccess.Migrations
                 name: "LandscapeStatistics");
 
             migrationBuilder.DropTable(
-                name: "LocalityOccurrence");
-
-            migrationBuilder.DropTable(
                 name: "OccurrenceCultures");
 
             migrationBuilder.DropTable(
                 name: "StudyCollectMethods");
 
             migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
                 name: "Biomes");
 
             migrationBuilder.DropTable(
                 name: "AreaTypes");
-
-            migrationBuilder.DropTable(
-                name: "Localities");
 
             migrationBuilder.DropTable(
                 name: "Cultures");
@@ -948,9 +957,6 @@ namespace BancoDeEspecies.DataAccess.Migrations
                 name: "MaterialDestinations");
 
             migrationBuilder.DropTable(
-                name: "LocalityTypes");
-
-            migrationBuilder.DropTable(
                 name: "CultureSpecies");
 
             migrationBuilder.DropTable(
@@ -960,13 +966,19 @@ namespace BancoDeEspecies.DataAccess.Migrations
                 name: "ColetaMethods");
 
             migrationBuilder.DropTable(
+                name: "Localities");
+
+            migrationBuilder.DropTable(
                 name: "ThreatDegrees");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Anthromes");
 
             migrationBuilder.DropTable(
-                name: "Cities");
+                name: "Municipalities");
 
             migrationBuilder.DropTable(
                 name: "References");
