@@ -10,6 +10,6 @@ namespace BancoDeEspecies.Application.ViewModels.ThreatDegree
         public ThreatDegreeSource Source { get; set; }
         public int? UfId { get; set; }
         public int? CountryId { get; set; }
-        public int? SpeciesId { get; set; }
+        public int? SpecieId { get; set; }
     }
 }

@@ -29,9 +29,9 @@ namespace BancoDeEspecies.DataAccess.Configurations
             builder.Property(e => e.Source);
 
             builder
-                .HasOne(p => p.Species)
+                .HasOne(p => p.Specie)
                 .WithMany(p => p.ThreatDegrees)
-                .HasForeignKey(p => p.SpeciesId);
+                .HasForeignKey(p => p.SpecieId);
 
             builder
                 .HasOne(p => p.Uf)

@@ -1,4 +1,5 @@
 ﻿using BancoDeEspecies.Application.ViewModels.Culture;
+using BancoDeEspecies.Application.ViewModels.Occurrence;
 
 namespace BancoDeEspecies.Application.ViewModels.OccurrenceCulture
 {
@@ -13,6 +14,7 @@ namespace BancoDeEspecies.Application.ViewModels.OccurrenceCulture
     public decimal? Area { get; set; }
     public decimal? Productivity { get; set; }
 
-    ICollection<CultureViewModel> Cultures { get; set; }
+    public CultureViewModel Culture { get; set; }
+    public OccurrenceViewModel Occurrence { get; set; }
   }
 }

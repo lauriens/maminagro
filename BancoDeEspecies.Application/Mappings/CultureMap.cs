@@ -8,7 +8,8 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public CultureMap()
         {
-            CreateMap<Culture, CultureViewModel>();
+            CreateMap<Culture, CultureViewModel>()
+                .ForMember(c => c.TimeSinclePlantingUnit, opt => opt.MapFrom(src => src.TimeSincePlantingUnit.ToString()));
             CreateMap<CreateCultureViewModel, Culture>();
             CreateMap<EditCultureViewModel, Culture>();
         }

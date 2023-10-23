@@ -13,5 +13,13 @@ namespace BancoDeEspecies.Application.Services
     public class ClassService : BaseService<Class, ClassViewModel, CreateClassViewModel>, IClassService
     {
         public ClassService(IMapper mapper, IUnitOfWork unitOfWork) : base(mapper, unitOfWork) { }
+
+        public new async Task<IEnumerable<ClassViewModel>> GetAllAsync()
+        {
+            var repository = _unitOfWork.GetBaseRepository<Class>();
+            var result = await repository.Get(includeProperties: "Phylum,Phylum.Kingdom,Phylum.Kingdom.Domain");
+
+            return result.Select(_mapper.Map<ClassViewModel>);
+        }
     }
 }

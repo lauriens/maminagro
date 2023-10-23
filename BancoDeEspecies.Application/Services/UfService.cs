@@ -13,5 +13,13 @@ namespace BancoDeEspecies.Application.Services
     public class UfService : BaseService<Uf, UfViewModel, CreateUfViewModel>, IUfService
     {
         public UfService(IMapper mapper, IUnitOfWork unitOfWork) : base(mapper, unitOfWork) { }
+
+        public new async Task<IEnumerable<UfViewModel>> GetAllAsync()
+        {
+            var repository = _unitOfWork.GetBaseRepository<Uf>();
+            var result = await repository.Get(includeProperties: "Country");
+
+            return result.Select(_mapper.Map<UfViewModel>);
+        }
     }
 }

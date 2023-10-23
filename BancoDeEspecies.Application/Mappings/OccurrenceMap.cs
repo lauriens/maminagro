@@ -8,7 +8,8 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public OccurrenceMap()
         {
-            CreateMap<Occurrence, OccurrenceViewModel>();
+            CreateMap<Occurrence, OccurrenceViewModel>()
+                .ForMember(o => o.OccurrenceType, opt => opt.MapFrom(src => src.OccurrenceType.ToString()));
             CreateMap<CreateOccurrenceViewModel, Occurrence>();
             CreateMap<EditOccurrenceViewModel, Occurrence>();
         }

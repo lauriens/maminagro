@@ -21,5 +21,13 @@ namespace BancoDeEspecies.Application.Services
 
             await base.CreateAsync(viewModel);
         }
+
+        public new async Task<IEnumerable<StudyCollectMethodViewModel>> GetAllAsync()
+        {
+            var repository = _unitOfWork.GetBaseRepository<StudyCollectMethod>();
+            var result = await repository.Get(includeProperties: "MaterialDestination,Reference.ReferenceType");
+
+            return result.Select(_mapper.Map<StudyCollectMethodViewModel>);
+        }
     }
 }

@@ -8,7 +8,8 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public ThreatDegreeMap()
         {
-            CreateMap<ThreatDegree, ThreatDegreeViewModel>();
+            CreateMap<ThreatDegree, ThreatDegreeViewModel>()
+                .ForMember(td => td.Source, opt => opt.MapFrom(src => src.Source.ToString()));
             CreateMap<CreateThreatDegreeViewModel, ThreatDegree>();
             CreateMap<EditThreatDegreeViewModel, ThreatDegree>();
         }

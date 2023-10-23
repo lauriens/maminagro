@@ -38,7 +38,7 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .HasForeignKey(p => p.CultureId);
 
             builder
-                .HasOne(p => p.Occurence)
+                .HasOne(p => p.Occurrence)
                 .WithMany(p => p.OccurrenceCultures)
                 .HasForeignKey(p => p.OccurenceId);
         }

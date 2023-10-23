@@ -19,17 +19,17 @@ namespace BancoDeEspecies.Application.ViewModels.Landscape
     public decimal? Radius { get; set; }
     public string? Description { get; set; }
     public bool? IsProtectedArea { get; set; }
-    public Agroecosystem Agroecosystem { get; set; }
+    public string Agroecosystem { get; set; }
 
     public AnthromeViewModel? Anthrome { get; set; }
     public MunicipalityViewModel? Municipality { get; set; }
     public SampleAreaTypeViewModel? SampleAreaType { get; set; }
     public ReferenceViewModel? Reference { get; set; }
     public ICollection<AbundanceViewModel> Abundances { get; set; }
-    public ICollection<BiomeViewModel> Biome { get; set; }
+    public ICollection<BiomeViewModel> Biomes { get; set; }
     public ICollection<LandscapeAreaTypeViewModel> LandscapeAreaTypes { get; set; }
     public ICollection<LandscapeStatisticViewModel> LandscapeStatistics { get; set; }
 
-    public ICollection<LocalityViewModel> Locations { get; set; }
+    public ICollection<LocalityViewModel> Localities { get; set; }
   }
 }

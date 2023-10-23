@@ -12,6 +12,6 @@
     public decimal? Productivity { get; set; }
 
     public Culture Culture { get; set; }
-    public Occurrence Occurence { get; set; }
+    public Occurrence Occurrence { get; set; }
   }
 }

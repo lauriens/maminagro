@@ -20,5 +20,13 @@ namespace BancoDeEspecies.Application.Services
 
             await base.CreateAsync(viewModel);
         }
+
+        public new async Task<IEnumerable<ThreatDegreeViewModel>> GetAllAsync()
+        {
+            var repository = _unitOfWork.GetBaseRepository<ThreatDegree>();
+            var result = await repository.Get(includeProperties: "Specie,Uf,Country");
+
+            return result.Select(_mapper.Map<ThreatDegreeViewModel>);
+        }
     }
 }

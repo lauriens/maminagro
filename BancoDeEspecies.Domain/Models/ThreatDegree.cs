@@ -10,11 +10,11 @@ namespace BancoDeEspecies.Domain.Models
     public ThreatDegreeSource Source { get; set; }
     public int? UfId { get; set; }
     public int? CountryId { get; set; }
-    public int? SpeciesId { get; set; }
+    public int? SpecieId { get; set; }
 
-    public Specie? Species { get; set; }
+    public Specie? Specie { get; set; }
     public Uf? Uf { get; set; }
     public Country? Country { get; set; }
-    public ICollection<Occurrence> Occurences { get; set; }
+    public ICollection<Occurrence> Occurrences { get; set; }
   }
 }

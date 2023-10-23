@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BancoDeEspecies.Application.Services.Base;
-using BancoDeEspecies.Application.ViewModels;
 using BancoDeEspecies.Application.ViewModels.Municipality;
 using BancoDeEspecies.DataAccess.UnitOfWork;
 using BancoDeEspecies.Domain.Models;
@@ -17,6 +16,12 @@ namespace BancoDeEspecies.Application.Services
         {
         }
 
-        
+        public async Task<IEnumerable<MunicipalityViewModel>> GetAllAsync()
+        {
+            var repository = _unitOfWork.GetBaseRepository<Municipality>();
+            var result = await repository.Get(includeProperties: "Uf.Country");
+
+            return result.Select(_mapper.Map<MunicipalityViewModel>);
+        }
     }
 }

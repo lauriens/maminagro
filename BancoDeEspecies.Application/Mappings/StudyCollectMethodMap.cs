@@ -8,7 +8,8 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public StudyCollectMethodMap()
         {
-            CreateMap<StudyCollectMethod, StudyCollectMethodViewModel>();
+            CreateMap<StudyCollectMethod, StudyCollectMethodViewModel>()
+                .ForMember(stm => stm.SampleDrawing, opt => opt.MapFrom(src => src.SampleDrawing.ToString()));
             CreateMap<CreateStudyCollectMethodViewModel, StudyCollectMethod>();
             CreateMap<EditStudyCollectMethodViewModel, StudyCollectMethod>();
         }

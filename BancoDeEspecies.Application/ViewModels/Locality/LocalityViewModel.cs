@@ -1,5 +1,4 @@
-﻿using BancoDeEspecies.Application.ViewModels.Municipality;
-using BancoDeEspecies.Application.ViewModels.SampleAreaType;
+﻿using BancoDeEspecies.Application.ViewModels.SampleAreaType;
 
 namespace BancoDeEspecies.Application.ViewModels.Locality
 {
@@ -10,6 +9,5 @@ namespace BancoDeEspecies.Application.ViewModels.Locality
         public decimal? Latitude { get; set; }
         public decimal? Longitude { get; set; }
         public SampleAreaTypeViewModel SampleAreaType { get; set; }
-        public MunicipalityViewModel? Municipality { get; set; }
     }
 }
