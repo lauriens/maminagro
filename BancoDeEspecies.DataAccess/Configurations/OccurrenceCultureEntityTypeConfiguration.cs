@@ -15,7 +15,7 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .HasKey(p => new
                 {
                     p.CultureId,
-                    p.OccurenceId
+                    p.OccurrenceId
                 });
 
             builder.Property(e => e.Area);
@@ -40,7 +40,7 @@ namespace BancoDeEspecies.DataAccess.Configurations
             builder
                 .HasOne(p => p.Occurrence)
                 .WithMany(p => p.OccurrenceCultures)
-                .HasForeignKey(p => p.OccurenceId);
+                .HasForeignKey(p => p.OccurrenceId);
         }
     }
 }

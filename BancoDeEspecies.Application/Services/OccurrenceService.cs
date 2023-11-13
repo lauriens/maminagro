@@ -17,7 +17,7 @@ namespace BancoDeEspecies.Application.Services
         public new async Task<IEnumerable<OccurrenceViewModel>> GetAllAsync()
         {
             var repository = _unitOfWork.GetBaseRepository<Occurrence>();
-            var result = await repository.Get(includeProperties: "OccurenceColetaMethod,Reference.ReferenceType,Reference.StudyCollectMethods.MaterialDestination,Specie.Genus,ThreatDegree,Abundances,OccurrenceCultures.Culture,Locality.LocalityType");
+            var result = await repository.Get(includeProperties: "OccurrenceColetaMethod,Reference.ReferenceType,Reference.StudyCollectMethods.MaterialDestination,Specie.Genus,ThreatDegree,Abundances,OccurrenceCultures.Culture,Locality.LocalityType");
 
             return result.Select(_mapper.Map<OccurrenceViewModel>);
         }

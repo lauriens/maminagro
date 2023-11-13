@@ -22,7 +22,7 @@ namespace BancoDeEspecies.Application.ViewModels.Landscape
     public string Agroecosystem { get; set; }
 
     public AnthromeViewModel? Anthrome { get; set; }
-    public MunicipalityViewModel? Municipality { get; set; }
+    public IEnumerable<MunicipalityViewModel>? Municipalities { get; set; }
     public SampleAreaTypeViewModel? SampleAreaType { get; set; }
     public ReferenceViewModel? Reference { get; set; }
     public ICollection<AbundanceViewModel> Abundances { get; set; }

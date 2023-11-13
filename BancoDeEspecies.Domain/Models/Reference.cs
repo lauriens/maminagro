@@ -11,7 +11,7 @@
 
     public ReferenceType? ReferenceType { get; set; }
     public ICollection<Landscape> Landscapes { get; set; }
-    public ICollection<Occurrence> Occurences { get; set; }
+    public ICollection<Occurrence> Occurrences { get; set; }
     public ICollection<StudyCollectMethod> StudyCollectMethods { get; set; }
   }
 }

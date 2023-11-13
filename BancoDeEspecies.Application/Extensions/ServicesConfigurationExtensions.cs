@@ -13,6 +13,7 @@ namespace BancoDeEspecies.Application.Extensions
             services.AddScoped<IAnthromeService, AnthromeService>();
             services.AddScoped<IAreaTypeService, AreaTypeService>();
             services.AddScoped<IBiomeService, BiomeService>();
+            services.AddScoped<IBiomeLandscapeService, BiomeLandscapeService>();
             services.AddScoped<IClassService, ClassService>();
             services.AddScoped<IColetaMethodService, ColetaMethodService>();
             services.AddScoped<ICountryService, CountryService>();
@@ -24,6 +25,7 @@ namespace BancoDeEspecies.Application.Extensions
             services.AddScoped<IKingdomService, KingdomService>();
             services.AddScoped<ILandscapeAreaTypeService, LandscapeAreaTypeService>();
             services.AddScoped<ILandscapeService, LandscapeService>();
+            services.AddScoped<ILandscapeMunicipalityService, LandscapeMunicipalityService>();
             services.AddScoped<ILandscapeStatisticService, LandscapeStatisticService>();
             services.AddScoped<ILocalityService, LocalityService>();
             services.AddScoped<IMaterialDestinationService, MaterialDestinationService>();

@@ -47,18 +47,18 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .HasForeignKey(p => p.CreatedBy);
 
             builder
-                .HasOne(p => p.OccurenceColetaMethod)
-                .WithMany(p => p.Occurences)
-                .HasForeignKey(p => p.OccurenceMethodId);
+                .HasOne(p => p.OccurrenceColetaMethod)
+                .WithMany(p => p.Occurrences)
+                .HasForeignKey(p => p.OccurrenceMethodId);
 
             builder
                 .HasOne(p => p.Reference)
-                .WithMany(p => p.Occurences)
+                .WithMany(p => p.Occurrences)
                 .HasForeignKey(p => p.ReferenceId);
 
             builder
                 .HasOne(p => p.Specie)
-                .WithMany(p => p.Occurences)
+                .WithMany(p => p.Occurrences)
                 .HasForeignKey(p => p.SpecieId);
 
             builder
@@ -68,7 +68,7 @@ namespace BancoDeEspecies.DataAccess.Configurations
 
             builder
                 .HasOne(p => p.Locality)
-                .WithMany(p => p.Occurences)
+                .WithMany(p => p.Occurrences)
                 .HasForeignKey(p => p.LocalityId);
         }
     }

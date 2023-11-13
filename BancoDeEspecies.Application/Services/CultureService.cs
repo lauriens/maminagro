@@ -17,7 +17,7 @@ namespace BancoDeEspecies.Application.Services
         public new async Task<IEnumerable<CultureViewModel>> GetAllAsync()
         {
             var repository = _unitOfWork.GetBaseRepository<Culture>();
-            var result = await repository.Get(includeProperties: "Specie.Genus.Family.Order.Class.Phylum.Kingdom.Domain,OccurrenceCultures.Occurrence.OccurenceColetaMethod,OccurrenceCultures.Occurrence.Reference.ReferenceType,OccurrenceCultures.Occurrence.Reference.StudyCollectMethods.MaterialDestination,OccurrenceCultures.Occurrence.ThreatDegree,OccurrenceCultures.Occurrence.Abundances,OccurrenceCultures.Occurrence.Locality.LocalityType");
+            var result = await repository.Get(includeProperties: "Specie.Genus.Family.Order.Class.Phylum.Kingdom.Domain,OccurrenceCultures.Occurrence.OccurrenceColetaMethod,OccurrenceCultures.Occurrence.Reference.ReferenceType,OccurrenceCultures.Occurrence.Reference.StudyCollectMethods.MaterialDestination,OccurrenceCultures.Occurrence.ThreatDegree,OccurrenceCultures.Occurrence.Abundances,OccurrenceCultures.Occurrence.Locality.LocalityType");
 
             return result.Select(_mapper.Map<CultureViewModel>);
         }

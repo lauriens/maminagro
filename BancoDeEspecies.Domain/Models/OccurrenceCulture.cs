@@ -3,7 +3,7 @@
   public class OccurrenceCulture
   {
     public int CultureId { get; set; }
-    public int OccurenceId { get; set; }
+    public int OccurrenceId { get; set; }
     public string? Stage { get; set; }
     public string? Phenology { get; set; }
     public int? Percentage { get; set; }

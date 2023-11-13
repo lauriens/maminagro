@@ -7,7 +7,7 @@
     public int? GenusId { get; set; }
 
     public Genus? Genus { get; set; }
-    public ICollection<Occurrence> Occurences { get; set; }
+    public ICollection<Occurrence> Occurrences { get; set; }
     public ICollection<ThreatDegree> ThreatDegrees { get; set; }
   }
 }

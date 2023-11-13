@@ -21,7 +21,7 @@ namespace BancoDeEspecies.Application.ViewModels.Occurrence
     public bool? IsDuplicate { get; set; }
     public string ReviewerObservation { get; set; }
 
-    public OccurrenceColetaMethodViewModel? OccurenceColetaMethod { get; set; }
+    public OccurrenceColetaMethodViewModel? OccurrenceColetaMethod { get; set; }
     public ReferenceViewModel Reference { get; set; }
     public SpecieViewModel? Specie { get; set; }
     public ThreatDegreeViewModel? ThreatDegree { get; set; }

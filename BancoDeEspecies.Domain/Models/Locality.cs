@@ -11,6 +11,6 @@
     public SampleAreaType? LocalityType { get; set; }
 
     public ICollection<Landscape> Landscapes { get; set; }
-    public ICollection<Occurrence> Occurences { get; set; }
+    public ICollection<Occurrence> Occurrences { get; set; }
   }
 }

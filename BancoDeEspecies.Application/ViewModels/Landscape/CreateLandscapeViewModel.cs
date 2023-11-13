@@ -11,7 +11,6 @@ namespace BancoDeEspecies.Application.ViewModels.Landscape
         public bool? IsProtectedArea { get; set; }
         public Agroecosystem Agroecosystem { get; set; }
         public int? AnthromeId { get; set; }
-        public int? MunicipalityId { get; set; }
         public int? SampleAreaTypeId { get; set; }
         public int? ReferenceId { get; set; }
     }

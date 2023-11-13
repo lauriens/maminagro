@@ -1,10 +1,15 @@
-﻿namespace BancoDeEspecies.Domain.Models
-{
-  public class Biome
-  {
-    public int Id { get; set; }
-    public string Name { get; set; }
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-    public ICollection<Landscape> Landscapes { get; set; }
-  }
+namespace BancoDeEspecies.Domain.Models
+{
+    public class Biome
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        private ICollection<BiomeLandscape> BiomeLandscapes { get; set; }
+
+        [NotMapped]
+        public IEnumerable<Landscape> Landscapes => BiomeLandscapes.Select(bl => bl.Landscape);
+    }
 }

@@ -14,17 +14,17 @@ namespace BancoDeEspecies.Domain.Models
     public string ReviewerObservation { get; set; }
     public int CreatedBy { get; set; }
     public int? ThreatDegreeId { get; set; }
-    public int? OccurenceMethodId { get; set; }
+    public int? OccurrenceMethodId { get; set; }
     public int? SpecieId { get; set; }
     public int? ReferenceId { get; set; }
     public int? LocalityId { get; set; }
 
-    public OccurrenceColetaMethod? OccurenceColetaMethod { get; set; }
+    public OccurrenceColetaMethod? OccurrenceColetaMethod { get; set; }
     public Reference? Reference { get; set; }
     public Specie? Specie { get; set; }
     public ThreatDegree? ThreatDegree { get; set; }
     public User User { get; set; }
-    public ICollection<Abundance> Abundances { get; set;}
+    public ICollection<Abundance> Abundances { get; set; }
     public ICollection<OccurrenceCulture> OccurrenceCultures { get; set; }
     public Locality Locality { get; set; }
   }

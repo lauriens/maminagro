@@ -55,17 +55,8 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .HasForeignKey(p => p.SampleAreaTypeId);
 
             builder
-                .HasMany(p => p.Biomes)
-                .WithMany(p => p.Landscapes);
-
-            builder
                 .HasMany(p => p.Localities)
                 .WithMany(p => p.Landscapes);
-
-            builder
-                .HasOne(p => p.Municipality)
-                .WithMany(p => p.Landscapes)
-                .HasForeignKey(p => p.CityId);
         }
     }
 }

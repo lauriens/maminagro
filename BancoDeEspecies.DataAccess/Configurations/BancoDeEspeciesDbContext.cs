@@ -13,6 +13,7 @@ namespace BancoDeEspecies.DataAccess.Configurations
 
         public DbSet<AreaType> AreaTypes { get; set; }
         public DbSet<Biome> Biomes { get; set; }
+        public DbSet<BiomeLandscape> BiomesLandscapes { get; set; }
         public DbSet<Municipality> Municipalities { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<OccurrenceColetaMethod> ColetaMethods { get; set; }
@@ -25,10 +26,11 @@ namespace BancoDeEspecies.DataAccess.Configurations
         public DbSet<Kingdom> Kingdoms { get; set; }
         public DbSet<Landscape> Landscapes { get; set; }
         public DbSet<LandscapeAreaType> LandscapeAreaTypes { get; set; }
+        public DbSet<LandscapeMunicipality> LandscapeMunicipalities { get; set; }
         public DbSet<LandscapeStatistic> LandscapeStatistics { get; set; }
         public DbSet<Locality> Localities { get; set; }
         public DbSet<MaterialDestination> MaterialDestinations { get; set; }
-        public DbSet<Occurrence> Occurences { get; set; }
+        public DbSet<Occurrence> Occurrences { get; set; }
         public DbSet<OccurrenceCulture> OccurrenceCultures { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Phylum> Phylas { get; set; }

@@ -9,6 +9,6 @@ namespace BancoDeEspecies.Domain.Models
     public string? Description { get; set; }
     public ColetaMethodType? Type { get; set; }
 
-    public ICollection<Occurrence> Occurences { get; set; }
+    public ICollection<Occurrence> Occurrences { get; set; }
   }
 }

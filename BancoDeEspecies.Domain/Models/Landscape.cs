@@ -1,4 +1,5 @@
 ﻿using BancoDeEspecies.Domain.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BancoDeEspecies.Domain.Models
 {
@@ -16,11 +17,21 @@ namespace BancoDeEspecies.Domain.Models
         public int? ReferenceId { get; set; }
         public int? SampleAreaTypeId { get; set; }
         public Anthrome? Anthrome { get; set; }
-        public Municipality? Municipality { get; set; }
+
+        private ICollection<LandscapeMunicipality>? LandscapeMunicipalities { get; set; }
+
+        [NotMapped]
+        public IEnumerable<Municipality>? Municipalities => LandscapeMunicipalities.Select(lm => lm.Municipality);
+
         public Reference? Reference { get; set; }
         public SampleAreaType SampleAreaType { get; set; }
         public ICollection<Abundance> Abundances { get; set; }
-        public ICollection<Biome>? Biomes { get; set; }
+
+        private ICollection<BiomeLandscape> BiomeLandscapes { get; set; }
+
+        [NotMapped]
+        public IEnumerable<Biome>? Biomes => BiomeLandscapes.Select(bl => bl.Biome);
+
         public ICollection<Culture> Cultures { get; set; }
         public ICollection<LandscapeAreaType> LandscapeAreaTypes { get; set; }
         public ICollection<LandscapeStatistic> LandscapeStatistics { get; set; }
