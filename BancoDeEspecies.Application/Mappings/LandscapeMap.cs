@@ -8,8 +8,7 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public LandscapeMap()
         {
-            CreateMap<Landscape, LandscapeViewModel>()
-                .ForMember(l => l.Agroecosystem, opt => opt.MapFrom(src => src.Agroecosystem.ToString()));
+            CreateMap<Landscape, LandscapeViewModel>();
             CreateMap<CreateLandscapeViewModel, Landscape>();
             CreateMap<EditLandscapeViewModel, Landscape>();
         }

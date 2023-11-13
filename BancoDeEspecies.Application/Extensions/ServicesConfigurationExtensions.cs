@@ -10,6 +10,7 @@ namespace BancoDeEspecies.Application.Extensions
             services.AddAutoMapper(typeof(ServicesConfigurationExtensions));
 
             services.AddScoped<IAbundanceService, AbundanceService>();
+            services.AddScoped<IAgroecosystemService, AgroecosystemService>();
             services.AddScoped<IAnthromeService, AnthromeService>();
             services.AddScoped<IAreaTypeService, AreaTypeService>();
             services.AddScoped<IBiomeService, BiomeService>();

@@ -1,5 +1,4 @@
-﻿using BancoDeEspecies.Domain.Enums;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BancoDeEspecies.Domain.Models
 {
@@ -12,6 +11,7 @@ namespace BancoDeEspecies.Domain.Models
         public string? Description { get; set; }
         public bool? IsProtectedArea { get; set; }
         public Agroecosystem Agroecosystem { get; set; }
+        public int? AgroecosystemId { get; set; }
         public int? AnthromeId { get; set; }
         public int? CityId { get; set; }
         public int? ReferenceId { get; set; }

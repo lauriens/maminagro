@@ -20,12 +20,12 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .ValueGeneratedOnAdd();
 
             builder
-                .Property(p => p.Agroecosystem)
-                .IsRequired();
-
-            builder
                 .Property(p => p.Description)
                 .HasMaxLength(1024);
+
+            builder
+                .Property(p => p.AgroecosystemId)
+                .IsRequired(false);
 
             builder
                 .Property(e => e.IsProtectedArea);
@@ -53,6 +53,11 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .HasOne(p => p.SampleAreaType)
                 .WithMany(p => p.Landscapes)
                 .HasForeignKey(p => p.SampleAreaTypeId);
+
+            builder
+                .HasOne(p => p.Agroecosystem)
+                .WithMany(p => p.Landscapes)
+                .HasForeignKey(p => p.AgroecosystemId);
 
             builder
                 .HasMany(p => p.Localities)

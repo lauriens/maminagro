@@ -3,6 +3,7 @@ using System;
 using BancoDeEspecies.DataAccess.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BancoDeEspecies.DataAccess.Migrations
 {
     [DbContext(typeof(BancoDeEspeciesDbContext))]
-    partial class BancoDeEspeciesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231113210627_AddingAgroecosystemTable")]
+    partial class AddingAgroecosystemTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1050,11 +1052,9 @@ namespace BancoDeEspecies.DataAccess.Migrations
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.Landscape", b =>
                 {
-                    b.HasOne("BancoDeEspecies.Domain.Models.Agroecosystem", "Agroecosystem")
+                    b.HasOne("BancoDeEspecies.Domain.Models.Agroecosystem", null)
                         .WithMany("Landscapes")
-                        .HasForeignKey("AgroecosystemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AgroecosystemId");
 
                     b.HasOne("BancoDeEspecies.Domain.Models.Anthrome", "Anthrome")
                         .WithMany("Landscapes")
@@ -1069,8 +1069,6 @@ namespace BancoDeEspecies.DataAccess.Migrations
                         .HasForeignKey("SampleAreaTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Agroecosystem");
 
                     b.Navigation("Anthrome");
 
