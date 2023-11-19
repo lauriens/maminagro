@@ -12,11 +12,11 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .ToTable("LandscapeAreaTypes");
 
             builder
-                .HasKey(p => new
-                {
-                    p.AreaTypeId,
-                    p.LandscapeId
-                });
+                .HasKey(p => p.Id);
+
+            builder.Property(p => p.Id)
+                .IsRequired()
+                .ValueGeneratedOnAdd();
 
             builder
                 .Property(e => e.Percentage);
@@ -29,7 +29,7 @@ namespace BancoDeEspecies.DataAccess.Configurations
 
             builder
                 .HasOne(p => p.Landscape)
-                .WithMany(p => p.LandscapeAreaTypes)
+                .WithMany("LandscapeAreaTypes")
                 .HasForeignKey(p => p.LandscapeId)
                 .OnDelete(DeleteBehavior.Restrict);
         }

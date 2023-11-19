@@ -3,6 +3,7 @@ using System;
 using BancoDeEspecies.DataAccess.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BancoDeEspecies.DataAccess.Migrations
 {
     [DbContext(typeof(BancoDeEspeciesDbContext))]
-    partial class BancoDeEspeciesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231119002529_ExplicitlyAddingLandscapeLocality")]
+    partial class ExplicitlyAddingLandscapeLocality
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -450,7 +452,7 @@ namespace BancoDeEspecies.DataAccess.Migrations
 
                     b.HasIndex("LandscapeId");
 
-                    b.ToTable("LandscapeMunicipalities", (string)null);
+                    b.ToTable("LandscapeMunicipalities");
                 });
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.LandscapeStatistic", b =>

@@ -3,6 +3,7 @@ using System;
 using BancoDeEspecies.DataAccess.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BancoDeEspecies.DataAccess.Migrations
 {
     [DbContext(typeof(BancoDeEspeciesDbContext))]
-    partial class BancoDeEspeciesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231119000646_ChangingLandscapeAreaTypeKey")]
+    partial class ChangingLandscapeAreaTypeKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -423,21 +425,6 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     b.ToTable("LandscapeAreaTypes", (string)null);
                 });
 
-            modelBuilder.Entity("BancoDeEspecies.Domain.Models.LandscapeLocality", b =>
-                {
-                    b.Property<int>("LocalityId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("LandscapeId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("LocalityId", "LandscapeId");
-
-                    b.HasIndex("LandscapeId");
-
-                    b.ToTable("LandscapeLocalities", (string)null);
-                });
-
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.LandscapeMunicipality", b =>
                 {
                     b.Property<int>("MunicipalityId")
@@ -450,7 +437,7 @@ namespace BancoDeEspecies.DataAccess.Migrations
 
                     b.HasIndex("LandscapeId");
 
-                    b.ToTable("LandscapeMunicipalities", (string)null);
+                    b.ToTable("LandscapeMunicipalities");
                 });
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.LandscapeStatistic", b =>
@@ -960,6 +947,21 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
+            modelBuilder.Entity("LandscapeLocality", b =>
+                {
+                    b.Property<int>("LandscapesId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("LocalitiesId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("LandscapesId", "LocalitiesId");
+
+                    b.HasIndex("LocalitiesId");
+
+                    b.ToTable("LandscapeLocality");
+                });
+
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.Abundance", b =>
                 {
                     b.HasOne("BancoDeEspecies.Domain.Models.Landscape", "Landscape")
@@ -1104,25 +1106,6 @@ namespace BancoDeEspecies.DataAccess.Migrations
                     b.Navigation("AreaType");
 
                     b.Navigation("Landscape");
-                });
-
-            modelBuilder.Entity("BancoDeEspecies.Domain.Models.LandscapeLocality", b =>
-                {
-                    b.HasOne("BancoDeEspecies.Domain.Models.Landscape", "Landscape")
-                        .WithMany()
-                        .HasForeignKey("LandscapeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BancoDeEspecies.Domain.Models.Locality", "Locality")
-                        .WithMany()
-                        .HasForeignKey("LocalityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Landscape");
-
-                    b.Navigation("Locality");
                 });
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.LandscapeMunicipality", b =>
@@ -1323,6 +1306,21 @@ namespace BancoDeEspecies.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("LandscapeLocality", b =>
+                {
+                    b.HasOne("BancoDeEspecies.Domain.Models.Landscape", null)
+                        .WithMany()
+                        .HasForeignKey("LandscapesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BancoDeEspecies.Domain.Models.Locality", null)
+                        .WithMany()
+                        .HasForeignKey("LocalitiesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BancoDeEspecies.Domain.Models.Agroecosystem", b =>

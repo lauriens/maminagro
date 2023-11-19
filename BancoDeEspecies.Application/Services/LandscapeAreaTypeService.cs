@@ -6,11 +6,11 @@ using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Services
 {
-    public interface ILandscapeAreaTypeService : IBaseService<LandscapeAreaType, LandscapeAreaTypeViewModel, LandscapeAreaTypeViewModel>
+    public interface ILandscapeAreaTypeService : IBaseService<LandscapeAreaType, LandscapeAreaTypeViewModel, CreateLandscapeAreaTypeViewModel>
     {
     }
 
-    public class LandscapeAreaTypeService : BaseService<LandscapeAreaType, LandscapeAreaTypeViewModel, LandscapeAreaTypeViewModel>, ILandscapeAreaTypeService
+    public class LandscapeAreaTypeService : BaseService<LandscapeAreaType, LandscapeAreaTypeViewModel, CreateLandscapeAreaTypeViewModel>, ILandscapeAreaTypeService
     {
         public LandscapeAreaTypeService(IMapper mapper, IUnitOfWork unitOfWork) : base(mapper, unitOfWork) { }
 

@@ -17,7 +17,7 @@ namespace BancoDeEspecies.Application.Services
         public new async Task<IEnumerable<LandscapeViewModel>> GetAllAsync()
         {
             var repository = _unitOfWork.GetBaseRepository<Landscape>();
-            var result = await repository.Get(includeProperties: "Anthrome,Agroecosystem,LandscapeMunicipalities.Municipality.Uf,SampleAreaType,Reference.ReferenceType,Reference.StudyCollectMethods.MaterialDestination,Abundances,BiomeLandscapes.Biome,LandscapeAreaTypes.AreaType,LandscapeStatistics,Localities.LocalityType");
+            var result = await repository.Get(includeProperties: "Anthrome,Agroecosystem,LandscapeMunicipalities.Municipality.Uf,SampleAreaType,Reference.ReferenceType,Reference.StudyCollectMethods.MaterialDestination,Abundances,BiomeLandscapes.Biome,LandscapeAreaTypes.AreaType,LandscapeStatistics,LandscapeLocalities.Locality.LocalityType");
 
             return result.Select(_mapper.Map<LandscapeViewModel>);
         }

@@ -1,27 +1,50 @@
 ﻿using AutoMapper;
-using BancoDeEspecies.Application.Services.Base;
 using BancoDeEspecies.Application.ViewModels.LandscapeMunicipality;
 using BancoDeEspecies.DataAccess.UnitOfWork;
 using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Services
 {
-    public interface ILandscapeMunicipalityService : IBaseService<LandscapeMunicipality, CreateLandscapeMunicipalityViewModel, CreateLandscapeMunicipalityViewModel>
+    public interface ILandscapeMunicipalityService
     {
+        Task CreateAsync(CreateLandscapeMunicipalityViewModel landscapeMunicipalityViewModel);
+        Task DeleteAsync(int landscapeId, int municipalityId);
     }
 
-    public class LandscapeMunicipalityService : BaseService<LandscapeMunicipality, CreateLandscapeMunicipalityViewModel, CreateLandscapeMunicipalityViewModel>, ILandscapeMunicipalityService
+    public class LandscapeMunicipalityService : ILandscapeMunicipalityService
     {
-        public LandscapeMunicipalityService(IMapper mapper, IUnitOfWork unitOfWork) : base(mapper, unitOfWork)
-        { }
-        public new async Task<IEnumerable<CreateLandscapeMunicipalityViewModel>> GetAllAsync()
+        private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
+
+        public LandscapeMunicipalityService(IMapper mapper, IUnitOfWork unitOfWork)
         {
-            throw new NotImplementedException();
+            _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
-        public new async Task<CreateLandscapeMunicipalityViewModel> GetByIdAsync(int id)
+        public async Task CreateAsync(CreateLandscapeMunicipalityViewModel landscapeMunicipalityViewModel)
         {
-            throw new NotImplementedException();
+            var repository = _unitOfWork.GetBaseRepository<LandscapeMunicipality>();
+
+            var entity = _mapper.Map<LandscapeMunicipality>(landscapeMunicipalityViewModel);
+            repository.Insert(entity);
+
+            await _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int landscapeId, int municipalityId)
+        {
+            var repository = _unitOfWork.GetBaseRepository<LandscapeMunicipality>();
+
+            var entity = new LandscapeMunicipality
+            {
+                LandscapeId = landscapeId,
+                MunicipalityId = municipalityId
+            };
+
+            repository.Delete(entity);
+
+            await _unitOfWork.SaveChangesAsync();
         }
     }
 }

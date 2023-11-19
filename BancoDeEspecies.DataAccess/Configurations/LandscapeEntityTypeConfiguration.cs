@@ -58,10 +58,6 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .HasOne(p => p.Agroecosystem)
                 .WithMany(p => p.Landscapes)
                 .HasForeignKey(p => p.AgroecosystemId);
-
-            builder
-                .HasMany(p => p.Localities)
-                .WithMany(p => p.Landscapes);
         }
     }
 }

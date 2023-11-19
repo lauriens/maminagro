@@ -30,12 +30,12 @@ namespace BancoDeEspecies.WebApi.Controllers
             return StatusCode(StatusCodes.Status201Created);
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteAsync([FromRoute] int id)
+        [HttpDelete("{landsapeId}/{municipalityId}")]
+        public async Task<IActionResult> DeleteAsync([FromRoute] int landscapeId, [FromRoute] int municipalityId)
         {
             _logger.LogInformation(Constants.InitiatingEndpointLog, "DeleteAsync", "LandscapeMunicipality");
 
-            await _LandscapeMunicipalityService.DeleteAsync(id);
+            await _LandscapeMunicipalityService.DeleteAsync(landscapeId, municipalityId);
 
             _logger.LogInformation(Constants.FinalizingEndpointLog, "DeleteAsync", "LandscapeMunicipality");
 

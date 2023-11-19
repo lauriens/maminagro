@@ -1,6 +1,7 @@
 ﻿using BancoDeEspecies.Application.ViewModels.Abundance;
 using BancoDeEspecies.Application.ViewModels.Agroecosystem;
 using BancoDeEspecies.Application.ViewModels.Anthrome;
+using BancoDeEspecies.Application.ViewModels.AreaType;
 using BancoDeEspecies.Application.ViewModels.Biome;
 using BancoDeEspecies.Application.ViewModels.LandscapeAreaType;
 using BancoDeEspecies.Application.ViewModels.LandscapeStatistic;
@@ -27,7 +28,7 @@ namespace BancoDeEspecies.Application.ViewModels.Landscape
         public ReferenceViewModel? Reference { get; set; }
         public ICollection<AbundanceViewModel> Abundances { get; set; }
         public ICollection<BiomeViewModel> Biomes { get; set; }
-        public ICollection<LandscapeAreaTypeViewModel> LandscapeAreaTypes { get; set; }
+        public ICollection<AreaTypeViewModel> AreaTypes { get; set; }
         public ICollection<LandscapeStatisticViewModel> LandscapeStatistics { get; set; }
 
         public ICollection<LocalityViewModel> Localities { get; set; }

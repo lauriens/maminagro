@@ -26,6 +26,7 @@ namespace BancoDeEspecies.Application.Extensions
             services.AddScoped<IKingdomService, KingdomService>();
             services.AddScoped<ILandscapeAreaTypeService, LandscapeAreaTypeService>();
             services.AddScoped<ILandscapeService, LandscapeService>();
+            services.AddScoped<ILandscapeLocalityService, LandscapeLocalityService>();
             services.AddScoped<ILandscapeMunicipalityService, LandscapeMunicipalityService>();
             services.AddScoped<ILandscapeStatisticService, LandscapeStatisticService>();
             services.AddScoped<ILocalityService, LocalityService>();

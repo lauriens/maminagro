@@ -16,7 +16,7 @@ namespace BancoDeEspecies.Application.Services
         {
         }
 
-        public async Task<IEnumerable<MunicipalityViewModel>> GetAllAsync()
+        public new async Task<IEnumerable<MunicipalityViewModel>> GetAllAsync()
         {
             var repository = _unitOfWork.GetBaseRepository<Municipality>();
             var result = await repository.Get(includeProperties: "Uf.Country");

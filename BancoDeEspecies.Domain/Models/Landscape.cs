@@ -21,7 +21,7 @@ namespace BancoDeEspecies.Domain.Models
         private ICollection<LandscapeMunicipality>? LandscapeMunicipalities { get; set; }
 
         [NotMapped]
-        public IEnumerable<Municipality>? Municipalities => LandscapeMunicipalities.Select(lm => lm.Municipality);
+        public IEnumerable<Municipality>? Municipalities => LandscapeMunicipalities?.Select(lm => lm.Municipality);
 
         public Reference? Reference { get; set; }
         public SampleAreaType SampleAreaType { get; set; }
@@ -30,12 +30,20 @@ namespace BancoDeEspecies.Domain.Models
         private ICollection<BiomeLandscape> BiomeLandscapes { get; set; }
 
         [NotMapped]
-        public IEnumerable<Biome>? Biomes => BiomeLandscapes.Select(bl => bl.Biome);
+        public IEnumerable<Biome>? Biomes => BiomeLandscapes?.Select(bl => bl.Biome);
 
         public ICollection<Culture> Cultures { get; set; }
-        public ICollection<LandscapeAreaType> LandscapeAreaTypes { get; set; }
+        
+        private ICollection<LandscapeAreaType> LandscapeAreaTypes { get; set; }
+
+        [NotMapped]
+        public IEnumerable<AreaType> AreaTypes => LandscapeAreaTypes?.Select(la => la.AreaType);
+
         public ICollection<LandscapeStatistic> LandscapeStatistics { get; set; }
 
-        public ICollection<Locality> Localities { get; set; }
+        private ICollection<LandscapeLocality> LandscapeLocalities { get; set; }
+
+        [NotMapped]
+        public IEnumerable<Locality> Localities => LandscapeLocalities?.Select(ll => ll.Locality);
     }
 }

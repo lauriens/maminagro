@@ -43,7 +43,7 @@ namespace BancoDeEspecies.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync([FromBody] LandscapeAreaTypeViewModel landscapeAreaType)
+        public async Task<IActionResult> CreateAsync([FromBody] CreateLandscapeAreaTypeViewModel landscapeAreaType)
         {
             _logger.LogInformation(Constants.InitiatingEndpointLog, "CreateAsync", "LandscapeAreaType");
 
