@@ -37,7 +37,8 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .Property(e => e.TimeSincePlanting);
 
             builder
-                .Property(e => e.TimeSincePlantingUnit);
+                .Property(e => e.TimeSincePlantingUnit)
+                .IsRequired(false);
 
             builder
                 .Property(e => e.Variety);

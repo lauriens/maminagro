@@ -52,7 +52,8 @@ namespace BancoDeEspecies.DataAccess.Configurations
             builder
                 .HasOne(p => p.SampleAreaType)
                 .WithMany(p => p.Landscapes)
-                .HasForeignKey(p => p.SampleAreaTypeId);
+                .HasForeignKey(p => p.SampleAreaTypeId)
+                .IsRequired(false);
 
             builder
                 .HasOne(p => p.Agroecosystem)

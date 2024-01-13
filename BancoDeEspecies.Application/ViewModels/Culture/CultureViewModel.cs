@@ -11,7 +11,7 @@ namespace BancoDeEspecies.Application.ViewModels.Culture
         public string? Phenology { get; set; }
         public decimal? PlantedArea { get; set; }
         public int? TimeSincePlanting { get; set; }
-        public string? TimeSinclePlantingUnit { get; set; }
+        public string? TimeSincePlantingUnit { get; set; }
         public string SpeciesType { get; set; }
         public CultureSpecieViewModel? Specie { get; set; }
         public IEnumerable<OccurrenceCultureViewModel> OccurrenceCultures { get; set; }
