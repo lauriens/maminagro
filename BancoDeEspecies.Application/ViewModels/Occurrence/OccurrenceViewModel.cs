@@ -27,7 +27,7 @@ namespace BancoDeEspecies.Application.ViewModels.Occurrence
     public ThreatDegreeViewModel? ThreatDegree { get; set; }
     public UserViewModel User { get; set; }
     public ICollection<AbundanceViewModel> Abundances { get; set; }
-    public ICollection<OccurrenceCultureViewModel> OccurrenceCultures { get; set; }
+    public ICollection<OccurrenceCultureForOccurrenceViewModel> OccurrenceCultures { get; set; }
     public LocalityViewModel Locality { get; set; }
   }
 }

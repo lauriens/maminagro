@@ -6,11 +6,11 @@ using BancoDeEspecies.Domain.Models;
 
 namespace BancoDeEspecies.Application.Services
 {
-    public interface IOccurrenceCultureService : IBaseService<OccurrenceCulture, OccurrenceCultureViewModel, CreateOccurrenceCultureViewModel>
+    public interface IOccurrenceCultureService : IBaseService<OccurrenceCulture, OccurrenceCultureForOccurrenceViewModel, CreateOccurrenceCultureViewModel>
     {
     }
 
-    public class OccurrenceCultureService : BaseService<OccurrenceCulture, OccurrenceCultureViewModel, CreateOccurrenceCultureViewModel>, IOccurrenceCultureService
+    public class OccurrenceCultureService : BaseService<OccurrenceCulture, OccurrenceCultureForOccurrenceViewModel, CreateOccurrenceCultureViewModel>, IOccurrenceCultureService
     {
         public OccurrenceCultureService(IMapper mapper, IUnitOfWork unitOfWork) : base(mapper, unitOfWork) { }
     }

@@ -1,9 +1,8 @@
 ﻿using BancoDeEspecies.Application.ViewModels.CultureSpecie;
-using BancoDeEspecies.Application.ViewModels.OccurrenceCulture;
 
 namespace BancoDeEspecies.Application.ViewModels.Culture
 {
-    public class CultureViewModel
+    public class CultureForOccurrenceCultureViewModel
     {
         public int Id { get; set; }
         public string? CommonName { get; set; }
@@ -14,6 +13,5 @@ namespace BancoDeEspecies.Application.ViewModels.Culture
         public string? TimeSincePlantingUnit { get; set; }
         public string SpeciesType { get; set; }
         public CultureSpecieViewModel? Specie { get; set; }
-        public IEnumerable<OccurrenceCultureForCultureViewModel> OccurrenceCultures { get; set; }
     }
 }

@@ -8,7 +8,8 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public OccurrenceCultureMap()
         {
-            CreateMap<OccurrenceCulture, OccurrenceCultureViewModel>();
+            CreateMap<OccurrenceCulture, OccurrenceCultureForOccurrenceViewModel>();
+            CreateMap<OccurrenceCulture, OccurrenceCultureForCultureViewModel>();
             CreateMap<CreateOccurrenceCultureViewModel, OccurrenceCulture>();
         }
     }

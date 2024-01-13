@@ -10,6 +10,8 @@ namespace BancoDeEspecies.Application.Mappings
         {
             CreateMap<Culture, CultureViewModel>()
                 .ForMember(c => c.TimeSincePlantingUnit, opt => opt.MapFrom(src => src.TimeSincePlantingUnit.ToString()));
+            CreateMap<Culture, CultureForOccurrenceCultureViewModel>()
+                .ForMember(c => c.TimeSincePlantingUnit, opt => opt.MapFrom(src => src.TimeSincePlantingUnit.ToString()));
             CreateMap<CreateCultureViewModel, Culture>();
             CreateMap<EditCultureViewModel, Culture>();
         }

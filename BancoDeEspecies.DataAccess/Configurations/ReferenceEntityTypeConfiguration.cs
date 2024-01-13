@@ -25,20 +25,15 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .HasMaxLength(128);
 
             builder
-                .Property(p => p.Year);
+                .Property(p => p.Title)
+                .HasMaxLength(256);
 
             builder
-                .Property(p => p.ReferenceId)
-                .HasMaxLength(256);
+                .Property(p => p.Year);
 
             builder
                 .Property(p => p.BibtexKey)
                 .HasMaxLength(1024);
-
-            builder
-                .HasOne(p => p.ReferenceType)
-                .WithMany(p => p.References)
-                .HasForeignKey(p => p.ReferenceTypeId);
         }
     }
 }
