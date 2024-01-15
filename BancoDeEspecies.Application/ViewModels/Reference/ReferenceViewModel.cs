@@ -7,6 +7,7 @@ namespace BancoDeEspecies.Application.ViewModels.Reference
   {
     public int Id { get; set; }
     public string? AuthorName { get; set; }
+    public string? Title { get; set; }
     public int? Year { get; set; }
 
     public ReferenceTypeViewModel? ReferenceType { get; set; }
