@@ -1,8 +1,23 @@
 using BancoDeEspecies.Application.Extensions;
 using BancoDeEspecies.DataAccess.Extensions;
 
+var dev = "_dev";
+var prod = "_prod";
+
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: dev,
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173", "https://localhost:5220")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials();
+        });
+});
 
 // Add services to the container.
 
@@ -27,9 +42,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
     app.UseDeveloperExceptionPage();
+    app.UseCors(dev);
 }
-
-app.UseHttpsRedirection();
+else
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseAuthorization();
 
