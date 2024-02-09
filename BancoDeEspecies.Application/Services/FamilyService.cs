@@ -14,12 +14,12 @@ namespace BancoDeEspecies.Application.Services
     {
         public FamilyService(IMapper mapper, IUnitOfWork unitOfWork) : base(mapper, unitOfWork) { }
 
-        public new async Task<IEnumerable<FamilyViewModel>> GetAllAsync()
+        public new async Task<FamilyViewModel> GetByIdAsync(int id)
         {
             var repository = _unitOfWork.GetBaseRepository<Family>();
-            var result = await repository.Get(includeProperties: "Order.Class.Phylum.Kingdom.Domain");
+            var result = await repository.Get(f => f.Id == id, includeProperties: "Order.Class.Phylum.Kingdom.Domain");
 
-            return result.Select(_mapper.Map<FamilyViewModel>);
+            return _mapper.Map<FamilyViewModel>(result.FirstOrDefault());
         }
     }
 }
