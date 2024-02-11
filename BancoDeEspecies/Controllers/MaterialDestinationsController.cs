@@ -42,6 +42,18 @@ namespace BancoDeEspecies.WebApi.Controllers
             return Ok(response);
         }
 
+        [HttpGet("list")]
+        public async Task<IActionResult> GetList()
+        {
+            _logger.LogInformation(Constants.InitiatingEndpointLog, "GetList", "MaterialDestination");
+
+            var response = await _MaterialDestinationService.GetMaterialDestinationListAsync();
+
+            _logger.LogInformation(Constants.FinalizingEndpointLog, "GetList", "MaterialDestination");
+
+            return Ok(response);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromBody] CreateMaterialDestinationViewModel materialDestination)
         {

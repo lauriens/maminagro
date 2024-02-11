@@ -9,6 +9,7 @@ namespace BancoDeEspecies.Application.Mappings
         public MaterialDestinationMap()
         {
             CreateMap<MaterialDestination, MaterialDestinationViewModel>();
+            CreateMap<MaterialDestination, MaterialDestinationListViewModel>();
             CreateMap<CreateMaterialDestinationViewModel, MaterialDestination>();
         }
     }

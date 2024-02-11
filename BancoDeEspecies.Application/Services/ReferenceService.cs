@@ -8,6 +8,7 @@ namespace BancoDeEspecies.Application.Services
 {
     public interface IReferenceService : IBaseService<Reference, ReferenceViewModel, CreateReferenceViewModel>
     {
+        Task<IEnumerable<ReferenceListViewModel>> GetReferenceListAsync();
     }
 
     public class ReferenceService : BaseService<Reference, ReferenceViewModel, CreateReferenceViewModel>, IReferenceService
@@ -20,6 +21,14 @@ namespace BancoDeEspecies.Application.Services
             var result = await repository.Get(includeProperties: "ReferenceType,StudyCollectMethods.MaterialDestination");
 
             return result.Select(_mapper.Map<ReferenceViewModel>);
+        }
+
+        public async Task<IEnumerable<ReferenceListViewModel>> GetReferenceListAsync()
+        {
+            var repository = _unitOfWork.GetBaseRepository<Reference>();
+            var result = await repository.Get();
+
+            return result.Select(_mapper.Map<ReferenceListViewModel>);
         }
     }
 }

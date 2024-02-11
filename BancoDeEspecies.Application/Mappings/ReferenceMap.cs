@@ -9,6 +9,7 @@ namespace BancoDeEspecies.Application.Mappings
         public ReferenceMap()
         {
             CreateMap<Reference, ReferenceViewModel>();
+            CreateMap<Reference, ReferenceListViewModel>();
             CreateMap<CreateReferenceViewModel, Reference>();
             CreateMap<EditReferenceViewModel, Reference>();
         }

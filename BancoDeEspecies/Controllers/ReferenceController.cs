@@ -42,6 +42,18 @@ namespace BancoDeEspecies.WebApi.Controllers
             return Ok(response);
         }
 
+        [HttpGet("list")]
+        public async Task<IActionResult> GetListAsync()
+        {
+            _logger.LogInformation(Constants.InitiatingEndpointLog, "GetListAsync", "References");
+
+            var response = await _ReferenceService.GetReferenceListAsync();
+
+            _logger.LogInformation(Constants.FinalizingEndpointLog, "GetListAsync", "References");
+
+            return Ok(response);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromBody] CreateReferenceViewModel reference)
         {
