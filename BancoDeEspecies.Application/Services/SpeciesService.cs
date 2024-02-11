@@ -21,5 +21,13 @@ namespace BancoDeEspecies.Application.Services
 
             return _mapper.Map<SpecieViewModel>(result.FirstOrDefault());
         }
+
+        public new async Task<IEnumerable<SpecieViewModel>> GetAllAsync()
+        {
+            var repository = _unitOfWork.GetBaseRepository<Specie>();
+            var result = await repository.Get(includeProperties: "Genus");
+
+            return result.Select(_mapper.Map<SpecieViewModel>);
+        }
     }
 }
