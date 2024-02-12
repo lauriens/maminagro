@@ -20,13 +20,16 @@ namespace BancoDeEspecies.DataAccess.Configurations
                 .ValueGeneratedOnAdd();
 
             builder
-                .Property(p => p.StartDate);
+                .Property(p => p.StartDate)
+                .HasColumnType("timestamp without time zone");
 
             builder
-                .Property(p => p.EndDate);
+                .Property(p => p.EndDate)
+                .HasColumnType("timestamp without time zone");
 
             builder
-                .Property(p => p.OccurrenceTime);
+                .Property(p => p.OccurrenceTime)
+                .HasColumnType("timestamp without time zone");
 
             builder
                 .Property(p => p.IsDuplicate);

@@ -15,7 +15,7 @@ namespace BancoDeEspecies.Application.ViewModels.Occurrence
     public int Id { get; set; }
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }
-    public DateTime OccurrenceTime { get; set; }
+    public DateTime? OccurrenceTime { get; set; }
     public string OccurrenceType { get; set; }
     public bool IsSnucOccurrence { get; set; }
     public bool? IsDuplicate { get; set; }
