@@ -2,6 +2,7 @@
 using BancoDeEspecies.Application.Utilities;
 using BancoDeEspecies.Application.ViewModels.Landscape;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace BancoDeEspecies.WebApi.Controllers
 {
@@ -47,11 +48,11 @@ namespace BancoDeEspecies.WebApi.Controllers
         {
             _logger.LogInformation(Constants.InitiatingEndpointLog, "CreateAsync", "Landscape");
 
-            await _LandscapeService.CreateAsync(landscape);
+            var response = await _LandscapeService.CreateAsync(landscape);
 
             _logger.LogInformation(Constants.FinalizingEndpointLog, "CreateAsync", "Landscape");
 
-            return StatusCode(StatusCodes.Status201Created);
+            return Ok(response);
         }
 
         [HttpDelete]

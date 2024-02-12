@@ -8,6 +8,7 @@ namespace BancoDeEspecies.Application.Services
 {
     public interface ICultureService : IBaseService<Culture, CultureViewModel, CreateCultureViewModel>
     {
+        new Task<int?> CreateAsync(CreateCultureViewModel viewModel);
     }
 
     public class CultureService : BaseService<Culture, CultureViewModel, CreateCultureViewModel>, ICultureService
@@ -20,6 +21,16 @@ namespace BancoDeEspecies.Application.Services
             var result = await repository.Get(includeProperties: "Specie.Genus.Family.Order.Class.Phylum.Kingdom.Domain,OccurrenceCultures.Occurrence.OccurrenceColetaMethod,OccurrenceCultures.Occurrence.Reference.ReferenceType,OccurrenceCultures.Occurrence.Reference.StudyCollectMethods.MaterialDestination,OccurrenceCultures.Occurrence.ThreatDegree,OccurrenceCultures.Occurrence.Abundances,OccurrenceCultures.Occurrence.Locality.LocalityType");
 
             return result.Select(_mapper.Map<CultureViewModel>);
+        }
+
+        public async new Task<int?> CreateAsync(CreateCultureViewModel viewModel)
+        {
+            await base.CreateAsync(viewModel);
+
+            var repository = _unitOfWork.GetBaseRepository<Culture>();
+            var result = (await repository.Get(orderBy: l => l.OrderByDescending(e => e.Id))).FirstOrDefault();
+
+            return result?.Id;
         }
     }
 }

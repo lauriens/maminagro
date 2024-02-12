@@ -3,7 +3,6 @@ using BancoDeEspecies.Application.ViewModels.Agroecosystem;
 using BancoDeEspecies.Application.ViewModels.Anthrome;
 using BancoDeEspecies.Application.ViewModels.AreaType;
 using BancoDeEspecies.Application.ViewModels.Biome;
-using BancoDeEspecies.Application.ViewModels.LandscapeAreaType;
 using BancoDeEspecies.Application.ViewModels.LandscapeStatistic;
 using BancoDeEspecies.Application.ViewModels.Locality;
 using BancoDeEspecies.Application.ViewModels.Municipality;
@@ -20,7 +19,7 @@ namespace BancoDeEspecies.Application.ViewModels.Landscape
         public decimal? Radius { get; set; }
         public string? Description { get; set; }
         public bool? IsProtectedArea { get; set; }
-        public AgroecosystemViewModel Agroecosystem { get; set; }
+        public AgroecosystemViewModel? Agroecosystem { get; set; }
 
         public AnthromeViewModel? Anthrome { get; set; }
         public IEnumerable<MunicipalityViewModel>? Municipalities { get; set; }

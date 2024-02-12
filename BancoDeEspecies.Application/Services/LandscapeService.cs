@@ -8,6 +8,7 @@ namespace BancoDeEspecies.Application.Services
 {
     public interface ILandscapeService : IBaseService<Landscape, LandscapeViewModel, CreateLandscapeViewModel>
     {
+        new Task<int?> CreateAsync(CreateLandscapeViewModel viewModel);
     }
 
     public class LandscapeService : BaseService<Landscape, LandscapeViewModel, CreateLandscapeViewModel>, ILandscapeService
@@ -20,6 +21,16 @@ namespace BancoDeEspecies.Application.Services
             var result = await repository.Get(includeProperties: "Anthrome,Agroecosystem,LandscapeMunicipalities.Municipality.Uf,SampleAreaType,Reference.ReferenceType,Reference.StudyCollectMethods.MaterialDestination,Abundances,BiomeLandscapes.Biome,LandscapeAreaTypes.AreaType,LandscapeStatistics,LandscapeLocalities.Locality.LocalityType");
 
             return result.Select(_mapper.Map<LandscapeViewModel>);
+        }
+
+        public async new Task<int?> CreateAsync(CreateLandscapeViewModel viewModel)
+        {
+            await base.CreateAsync(viewModel);
+
+            var repository = _unitOfWork.GetBaseRepository<Landscape>();
+            var result = (await repository.Get(orderBy: l => l.OrderByDescending(e => e.Id))).FirstOrDefault();
+
+            return result?.Id;
         }
     }
 }

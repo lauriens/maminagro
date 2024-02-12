@@ -47,11 +47,11 @@ namespace BancoDeEspecies.WebApi.Controllers
         {
             _logger.LogInformation(Constants.InitiatingEndpointLog, "CreateAsync", "Occurrence");
 
-            await _OccurrenceService.CreateAsync(occurrence);
+            var response = await _OccurrenceService.CreateAsync(occurrence);
 
             _logger.LogInformation(Constants.FinalizingEndpointLog, "CreateAsync", "Occurrence");
 
-            return StatusCode(StatusCodes.Status201Created);
+            return Ok(response);
         }
 
         [HttpDelete]
