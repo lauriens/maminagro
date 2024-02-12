@@ -11,7 +11,7 @@ namespace BancoDeEspecies.Domain.Models
     public bool? IsDuplicate { get; set; }
     public OccurrenceType OccurrenceType { get; set; }
     public bool IsSnucOccurrence { get; set; }
-    public string ReviewerObservation { get; set; }
+    public string? ReviewerObservation { get; set; }
     public int CreatedBy { get; set; }
     public int? ThreatDegreeId { get; set; }
     public int? OccurrenceMethodId { get; set; }
@@ -26,6 +26,6 @@ namespace BancoDeEspecies.Domain.Models
     public User User { get; set; }
     public ICollection<Abundance> Abundances { get; set; }
     public ICollection<OccurrenceCulture> OccurrenceCultures { get; set; }
-    public Locality Locality { get; set; }
+    public Locality? Locality { get; set; }
   }
 }

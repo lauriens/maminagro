@@ -8,6 +8,7 @@ namespace BancoDeEspecies.Application.Services
 {
     public interface IThreatDegreeService : IBaseService<ThreatDegree, ThreatDegreeViewModel, CreateThreatDegreeViewModel>
     {
+        Task<IEnumerable<ThreatDegreeViewModel>> GetThreatDegreesBySpecieAsync(int specieId);
     }
 
     public class ThreatDegreeService : BaseService<ThreatDegree, ThreatDegreeViewModel, CreateThreatDegreeViewModel>, IThreatDegreeService
@@ -25,6 +26,14 @@ namespace BancoDeEspecies.Application.Services
         {
             var repository = _unitOfWork.GetBaseRepository<ThreatDegree>();
             var result = await repository.Get(includeProperties: "Specie,Uf,Country");
+
+            return result.Select(_mapper.Map<ThreatDegreeViewModel>);
+        }
+
+        public async Task<IEnumerable<ThreatDegreeViewModel>> GetThreatDegreesBySpecieAsync(int specieId)
+        {
+            var repository = _unitOfWork.GetBaseRepository<ThreatDegree>();
+            var result = await repository.Get(t => t.SpecieId == specieId, includeProperties: "Uf,Country");
 
             return result.Select(_mapper.Map<ThreatDegreeViewModel>);
         }

@@ -39,7 +39,8 @@ namespace BancoDeEspecies.DataAccess.Configurations
 
             builder
                 .Property(p => p.ReviewerObservation)
-                .HasMaxLength(2048);
+                .HasMaxLength(2048)
+                .IsRequired(false);
 
             builder
                 .HasOne(p => p.User)

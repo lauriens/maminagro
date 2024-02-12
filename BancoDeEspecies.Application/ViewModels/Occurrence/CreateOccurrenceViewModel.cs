@@ -6,11 +6,11 @@ namespace BancoDeEspecies.Application.ViewModels.Occurrence
     {
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public DateTime OccurrenceTime { get; set; }
+        public DateTime? OccurrenceTime { get; set; }
         public OccurrenceType OccurrenceType { get; set; }
         public bool IsSnucOccurrence { get; set; }
         public bool? IsDuplicate { get; set; }
-        public string ReviewerObservation { get; set; }
+        public string? ReviewerObservation { get; set; }
 
         public int? ThreatDegreeId { get; set; }
         public int? OccurrenceMethodId { get; set; }

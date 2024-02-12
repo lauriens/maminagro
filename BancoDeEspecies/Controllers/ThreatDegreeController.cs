@@ -42,6 +42,18 @@ namespace BancoDeEspecies.WebApi.Controllers
             return Ok(response);
         }
 
+        [HttpGet("specie/{specieId}")]
+        public async Task<IActionResult> GetBySpecieIdAsync([FromRoute] int specieId)
+        {
+            _logger.LogInformation(Constants.InitiatingEndpointLog, "GetBySpecieId", "ThreatDegree");
+
+            var response = await _ThreatDegreeService.GetThreatDegreesBySpecieAsync(specieId);
+
+            _logger.LogInformation(Constants.FinalizingEndpointLog, "GetBySpecieId", "ThreatDegree");
+
+            return Ok(response);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromBody] CreateThreatDegreeViewModel threatDegree)
         {
