@@ -8,9 +8,12 @@ namespace BancoDeEspecies.Application.Mappings
     {
         public LocalityMap()
         {
-            CreateMap<Locality, LocalityViewModel>();
-            CreateMap<CreateLocalityViewModel, Locality>();
-            CreateMap<EditLocalityViewModel, Locality>();
+            CreateMap<Locality, LocalityViewModel>()
+                .ForMember(l => l.SampleAreaType, opt => opt.MapFrom(src => src.LocalityType));
+            CreateMap<CreateLocalityViewModel, Locality>()
+                .ForMember(l => l.TypeId, opt => opt.MapFrom(src => src.SampleAreaTypeId));
+            CreateMap<EditLocalityViewModel, Locality>()
+                .ForMember(l => l.TypeId, opt => opt.MapFrom(src => src.SampleAreaTypeId));
         }
     }
 }
