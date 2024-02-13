@@ -42,6 +42,18 @@ namespace BancoDeEspecies.WebApi.Controllers
             return Ok(response);
         }
 
+        [HttpGet("landscape/{landscapeId}")]
+        public async Task<IActionResult> GetByLandscapeIdAsync([FromRoute] int landscapeId)
+        {
+            _logger.LogInformation(Constants.InitiatingEndpointLog, "GetByLandscapeIdAsync", "Culture");
+
+            var response = await _CultureService.GetLandscapeCulturesAsync(landscapeId);
+
+            _logger.LogInformation(Constants.FinalizingEndpointLog, "GetByLandscapeIdAsync", "Culture");
+
+            return Ok(response);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromBody] CreateCultureViewModel culture)
         {

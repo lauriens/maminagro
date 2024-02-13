@@ -9,6 +9,7 @@ namespace BancoDeEspecies.Application.Services
     public interface ICultureService : IBaseService<Culture, CultureViewModel, CreateCultureViewModel>
     {
         new Task<int?> CreateAsync(CreateCultureViewModel viewModel);
+        Task<IEnumerable<CultureViewModel>> GetLandscapeCulturesAsync(int landscapeId);
     }
 
     public class CultureService : BaseService<Culture, CultureViewModel, CreateCultureViewModel>, ICultureService
@@ -31,6 +32,14 @@ namespace BancoDeEspecies.Application.Services
             var result = (await repository.Get(orderBy: l => l.OrderByDescending(e => e.Id))).FirstOrDefault();
 
             return result?.Id;
+        }
+
+        public async Task<IEnumerable<CultureViewModel>> GetLandscapeCulturesAsync(int landscapeId)
+        {
+            var repository = _unitOfWork.GetBaseRepository<Culture>();
+            var result = await repository.Get(c => c.LandscapeId == landscapeId, includeProperties: "Specie.Genus");
+
+            return result.Select(_mapper.Map<CultureViewModel>);
         }
     }
 }
