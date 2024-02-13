@@ -42,6 +42,18 @@ namespace BancoDeEspecies.WebApi.Controllers
             return Ok(response);
         }
 
+        [HttpGet("byLandscapeOrOccurrence")]
+        public async Task<IActionResult> GetFilteredAbundancesAsync([FromQuery] int? landscapeId, [FromQuery] int? occurrenceId)
+        {
+            _logger.LogInformation(Constants.InitiatingEndpointLog, "GetFilteredAbundancesAsync", "Abundance");
+
+            var response = await _AbundanceService.GetFilteredAbundances(occurrenceId, landscapeId);
+
+            _logger.LogInformation(Constants.FinalizingEndpointLog, "GetFilteredAbundancesAsync", "Abundance");
+
+            return Ok(response);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromBody] CreateAbundanceViewModel abundance)
         {

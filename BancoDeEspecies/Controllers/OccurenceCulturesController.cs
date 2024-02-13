@@ -42,6 +42,18 @@ namespace BancoDeEspecies.WebApi.Controllers
             return Ok(response);
         }
 
+        [HttpGet("byOccurrenceOrCulture")]
+        public async Task<IActionResult> GetFilteredOccurrenceCulturesAsync([FromQuery] int? cultureId, [FromQuery] int? occurrenceId)
+        {
+            _logger.LogInformation(Constants.InitiatingEndpointLog, "GetFilteredOccurrenceCulturesAsync", "OccurrenceCulture");
+
+            var response = await _OccurrenceCultureService.GetFilteredOccurrenceCultures(cultureId, occurrenceId);
+
+            _logger.LogInformation(Constants.FinalizingEndpointLog, "GetFilteredOccurrenceCulturesAsync", "OccurrenceCulture");
+
+            return Ok(response);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromBody] CreateOccurrenceCultureViewModel occurrenceCulture)
         {

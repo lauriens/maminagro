@@ -10,7 +10,7 @@ namespace BancoDeEspecies.Application.ViewModels.Culture
         public string? Phenology { get; set; }
         public decimal? PlantedArea { get; set; }
         public int? TimeSincePlanting { get; set; }
-        public string? TimeSincePlantingUnit { get; set; }
+        public int? TimeSincePlantingUnit { get; set; }
         public CultureSpeciesType SpeciesType { get; set; }
         public int? SpecieId { get; set; }
         public int? LandscapeId { get; set; }
