@@ -25,7 +25,7 @@ namespace BancoDeEspecies.Application.Services
         public new async Task<IEnumerable<ThreatDegreeViewModel>> GetAllAsync()
         {
             var repository = _unitOfWork.GetBaseRepository<ThreatDegree>();
-            var result = await repository.Get(includeProperties: "Specie,Uf,Country");
+            var result = await repository.Get(includeProperties: "Specie.Genus,Uf,Country");
 
             return result.Select(_mapper.Map<ThreatDegreeViewModel>);
         }
